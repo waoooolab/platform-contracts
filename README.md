@@ -28,4 +28,5 @@ Changelog policy:
 Validation:
 - `scripts/validate_schemas.py`: schema syntax + naming + `$id` checks.
 - `scripts/check_changelog_update.py`: changelog policy enforcement.
-- `.github/workflows/contracts-ci.yml`: CI entry for PR/push validation.
+- `.github/workflows/contracts-ci.yml`: cross-platform CI for PR/push
+  (Ubuntu/Windows/macOS with Python 3.11 and 3.12).
