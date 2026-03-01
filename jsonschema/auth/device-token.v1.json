@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/auth/device-token.v1.json",
+  "title": "DeviceTokenV1",
+  "description": "Device token descriptor used by device-hub for node-agent trust, rotation and revocation.",
+  "type": "object",
+  "required": [
+    "token_id",
+    "token_use",
+    "tenant_id",
+    "app_id",
+    "device_id",
+    "node_id",
+    "platform",
+    "status",
+    "scope",
+    "issued_at",
+    "expires_at",
+    "jti"
+  ],
+  "properties": {
+    "token_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "token_use": {
+      "const": "device"
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "app_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "macos",
+        "ios",
+        "android",
+        "linux",
+        "windows",
+        "web"
+      ]
+    },
+    "device_fingerprint": {
+      "type": "string",
+      "minLength": 8
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "revoked",
+        "expired"
+      ]
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_.:-]+$"
+      },
+      "minItems": 1
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_seen_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "paired_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "jti": {
+      "type": "string",
+      "minLength": 8
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

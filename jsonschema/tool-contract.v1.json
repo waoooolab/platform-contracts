@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/tool-contract.v1.json",
+  "title": "ToolContractV1",
+  "type": "object",
+  "required": ["tool_name", "tool_version", "input_schema_version", "execution_mode", "timeout_ms", "idempotency_required", "error_envelope", "trace_fields"],
+  "properties": {
+    "tool_name": {"type": "string"},
+    "tool_version": {"type": "string"},
+    "input_schema_version": {"type": "string"},
+    "execution_mode": {"type": "string", "enum": ["sync", "async", "stream"]},
+    "timeout_ms": {"type": "integer", "minimum": 1},
+    "idempotency_required": {"type": "boolean"},
+    "error_envelope": {
+      "type": "object",
+      "required": ["code", "category", "message", "retryable"],
+      "properties": {
+        "code": {"type": "string"},
+        "category": {"type": "string"},
+        "message": {"type": "string"},
+        "retryable": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "trace_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}
