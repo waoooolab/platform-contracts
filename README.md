@@ -20,3 +20,12 @@ Versioning policy:
 - Use SemVer at contract file level (`*.v1.json`, `*.v2.json`).
 - Additive fields are backward compatible in the same major version.
 - Removing/changing required fields requires a new major version.
+
+Changelog policy:
+- Contract changes must update `CONTRACT-CHANGELOG.md` in the same PR.
+- See `CONTRACT-CHANGELOG-POLICY.md` for required entry format.
+
+Validation:
+- `scripts/validate_schemas.py`: schema syntax + naming + `$id` checks.
+- `scripts/check_changelog_update.py`: changelog policy enforcement.
+- `.github/workflows/contracts-ci.yml`: CI entry for PR/push validation.
