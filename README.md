@@ -1,5 +1,5 @@
 # platform-contracts
-[![CI](https://github.com/waoooolab/platform-contracts/actions/workflows/contracts-ci.yml/badge.svg?branch=main)](https://github.com/waoooolab/platform-contracts/actions/workflows/contracts-ci.yml)
+[![CI](https://github.com/waoooolab/platform-contracts/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/waoooolab/platform-contracts/actions/workflows/ci.yml)
 
 Shared contract definitions for runtime services.
 
@@ -29,5 +29,5 @@ Changelog policy:
 Validation:
 - `scripts/validate_schemas.py`: schema syntax + naming + `$id` checks.
 - `scripts/check_changelog_update.py`: changelog policy enforcement.
-- `.github/workflows/contracts-ci.yml`: cross-platform CI for PR/push
+- `.github/workflows/ci.yml`: cross-platform CI for PR/push
   (Ubuntu/Windows/macOS with Python 3.11 and 3.12).
