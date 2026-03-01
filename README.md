@@ -1,4 +1,5 @@
 # platform-contracts
+[![CI](https://github.com/waoooolab/platform-contracts/actions/workflows/contracts-ci.yml/badge.svg?branch=main)](https://github.com/waoooolab/platform-contracts/actions/workflows/contracts-ci.yml)
 
 Shared contract definitions for runtime services.
 
