@@ -1,0 +1,52 @@
+name: PR Foundation Link Guard
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+jobs:
+  validate-foundation-link:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Validate PR governance fields
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = (context.payload.pull_request.body || "").trim();
+            const referencePatterns = [
+              /FOUNDATION-TODO(?:\.md)?/i,
+              /FOUNDATION-IMPLEMENTATION-PHASES(?:\.md)?/i,
+              /docs\/todo\/FOUNDATION-TODO\.md/i,
+              /docs\/roadmap\/FOUNDATION-IMPLEMENTATION-PHASES\.md/i,
+              /\bP\d+\.\d+\b/,
+              /\bphase\s*exit\b/i,
+            ];
+            const hasReference = referencePatterns.some((pattern) => pattern.test(body));
+            const hasGateDeclaration = /\bGate\s*:\s*(Convergence|Integration)\b/i.test(body);
+            const hasAtomicizationField =
+              /\bAtomicization\s*:\s*(done|pending|n\/a|not applicable)\b/i.test(body) ||
+              /原子化\s*:\s*(完成|待补|不适用)/i.test(body);
+
+            const errors = [];
+            if (!hasReference) {
+              errors.push(
+                "Missing foundation reference: include TODO/phase reference, for example 'TODO: P6.8' or 'Phase Exit: ...'."
+              );
+            }
+            if (!hasGateDeclaration) {
+              errors.push(
+                "Missing gate declaration: add `Gate: Convergence` or `Gate: Integration`."
+              );
+            }
+            if (!hasAtomicizationField) {
+              errors.push(
+                "Missing atomicization field: add `Atomicization: done|pending|n/a`."
+              );
+            }
+
+            if (errors.length > 0) {
+              core.setFailed(errors.join("\n"));
+            }
