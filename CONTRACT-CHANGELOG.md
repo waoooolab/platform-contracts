@@ -33,6 +33,9 @@ Policy reference:
   (`trust_level`, `policy_profile`), and `distribution` metadata
   (regions/languages/billing profile) for unified registry and scenario gating
   (migration: n/a)
+- [added] jsonschema/app/app-capability-event.v1.json - backward-compatible:
+  app capability lifecycle event contract for compile/publish/invoke paths
+  (migration: n/a)
 - [fixed] CONTRACT-CHANGELOG.md - backward-compatible: policy sync checkpoint
   after runtime schema batch push; changelog is now explicitly touched alongside
   schema evolution enforcement workflow (migration: n/a)

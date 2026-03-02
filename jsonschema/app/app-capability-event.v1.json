@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/app/app-capability-event.v1.json",
+  "title": "AppCapabilityEventV1",
+  "description": "Capability compile/publish/invoke lifecycle events.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "tenant_id",
+    "app_id",
+    "session_key",
+    "trace_id",
+    "correlation_id",
+    "ts",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "app.capability.compiled.v1",
+        "app.capability.published.v1",
+        "app.capability.invoked.v1",
+        "app.capability.invoke_failed.v1"
+      ]
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "app_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "capability_id",
+        "capability_version",
+        "status"
+      ],
+      "properties": {
+        "capability_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capability_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "compiled",
+            "published",
+            "invoked",
+            "failed"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "module",
+            "tool",
+            "workflow",
+            "app"
+          ]
+        },
+        "workflow_source": {
+          "type": "object",
+          "required": [
+            "workflow_id",
+            "workflow_version",
+            "graph_hash",
+            "mode"
+          ],
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "workflow_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "graph_hash": {
+              "type": "string",
+              "pattern": "^sha256:[A-Fa-f0-9]{64}$"
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "node",
+                "simple"
+              ]
+            },
+            "entry_nodes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "exit_nodes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "compiled_capability": {
+          "type": "object"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "private",
+            "internal",
+            "public"
+          ]
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "failure": {
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "classification"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "minLength": 1
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1
+            },
+            "classification": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "app.capability.compiled.v1"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "required": [
+              "status",
+              "kind",
+              "workflow_source",
+              "compiled_capability"
+            ],
+            "properties": {
+              "status": {
+                "const": "compiled"
+              },
+              "kind": {
+                "const": "app"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "app.capability.published.v1"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "required": [
+              "status",
+              "kind",
+              "visibility"
+            ],
+            "properties": {
+              "status": {
+                "const": "published"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "app.capability.invoked.v1"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "required": [
+              "status",
+              "kind",
+              "run_id",
+              "run_status"
+            ],
+            "properties": {
+              "status": {
+                "const": "invoked"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "app.capability.invoke_failed.v1"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "required": [
+              "status",
+              "kind",
+              "failure"
+            ],
+            "properties": {
+              "status": {
+                "const": "failed"
+              },
+              "kind": {
+                "const": "app"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

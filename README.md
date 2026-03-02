@@ -24,6 +24,7 @@ Runtime contracts (P6 routing and placement):
 
 App capability contracts (P6 app-mode baseline):
 - `jsonschema/app/app-capability.v1.json` (workflow-to-app publishable capability package, with optional dependency/policy/distribution metadata for capability registry gating)
+- `jsonschema/app/app-capability-event.v1.json` (compile/publish/invoke lifecycle events for app capabilities)
 
 Versioning policy:
 - Use SemVer at contract file level (`*.v1.json`, `*.v2.json`).
