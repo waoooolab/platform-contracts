@@ -17,6 +17,14 @@ Runtime contracts (P0 baseline):
 - `jsonschema/command-envelope.v1.json` (idempotency + retry semantics)
 - `jsonschema/runtime/runtime-state.v1.json` (run/task/device state enums)
 
+Runtime contracts (P6 routing and placement):
+- `jsonschema/runtime/execution-profile.v1.json` (control/compute route input)
+- `jsonschema/runtime/runtime-route-event.v1.json` (`runtime.route.*` events)
+- `jsonschema/runtime/device-route-event.v1.json` (`device.route.*` + `device.lease.*` events)
+
+App capability contracts (P6 app-mode baseline):
+- `jsonschema/app/app-capability.v1.json` (workflow-to-app publishable capability package, with optional dependency/policy/distribution metadata for capability registry gating)
+
 Versioning policy:
 - Use SemVer at contract file level (`*.v1.json`, `*.v2.json`).
 - Additive fields are backward compatible in the same major version.

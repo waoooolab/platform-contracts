@@ -17,6 +17,22 @@ Policy reference:
   runtime event envelope contract (migration: n/a)
 - [added] jsonschema/runtime/runtime-state.v1.json - backward-compatible:
   shared run/task/device state enum contract (migration: n/a)
+- [added] jsonschema/runtime/execution-profile.v1.json - backward-compatible:
+  contract-driven route input for control/compute and placement constraints
+  (migration: n/a)
+- [added] jsonschema/runtime/runtime-route-event.v1.json -
+  backward-compatible: runtime route decision/failure event contract
+  (`runtime.route.decided`, `runtime.route.failed`) (migration: n/a)
+- [added] jsonschema/runtime/device-route-event.v1.json -
+  backward-compatible: device route and lease lifecycle event contract
+  (`device.route.*`, `device.lease.*`) (migration: n/a)
+- [added] jsonschema/app/app-capability.v1.json - backward-compatible:
+  workflow-to-app publishable capability package contract (migration: n/a)
+- [changed] jsonschema/app/app-capability.v1.json - backward-compatible:
+  add optional `kind`, `requires_capabilities`, governance policy fields
+  (`trust_level`, `policy_profile`), and `distribution` metadata
+  (regions/languages/billing profile) for unified registry and scenario gating
+  (migration: n/a)
 - [added] jsonschema/tool-contract.v1.json - backward-compatible: baseline tool
   invocation contract (migration: n/a)
 

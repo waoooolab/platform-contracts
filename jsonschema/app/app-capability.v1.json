@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/app/app-capability.v1.json",
+  "title": "AppCapabilityV1",
+  "description": "Publishable workflow capability package for app-mode distribution.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "capability_id",
+    "version",
+    "display_name",
+    "visibility",
+    "source",
+    "interface",
+    "execution",
+    "governance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "app-capability.v1"
+    },
+    "kind": {
+      "type": "string",
+      "const": "app",
+      "description": "Capability taxonomy discriminator. For this schema it should be 'app'."
+    },
+    "capability_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "private",
+        "internal",
+        "public"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "workflow_id",
+        "workflow_version",
+        "graph_hash",
+        "mode"
+      ],
+      "properties": {
+        "workflow_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workflow_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "graph_hash": {
+          "type": "string",
+          "pattern": "^sha256:[A-Fa-f0-9]{64}$"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "node",
+            "simple"
+          ]
+        },
+        "entry_nodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "exit_nodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "interface": {
+      "type": "object",
+      "required": [
+        "input_schema",
+        "output_schema",
+        "ui"
+      ],
+      "properties": {
+        "input_schema": {
+          "type": "object"
+        },
+        "output_schema": {
+          "type": "object"
+        },
+        "ui": {
+          "type": "object",
+          "required": [
+            "default_mode",
+            "switchable_modes"
+          ],
+          "properties": {
+            "default_mode": {
+              "type": "string",
+              "enum": [
+                "tools",
+                "canvas"
+              ]
+            },
+            "switchable_modes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "tools",
+                  "canvas"
+                ]
+              },
+              "uniqueItems": true
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "default_mode": {
+                    "const": "tools"
+                  }
+                },
+                "required": [
+                  "default_mode"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "switchable_modes": {
+                    "contains": {
+                      "const": "tools"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "default_mode": {
+                    "const": "canvas"
+                  }
+                },
+                "required": [
+                  "default_mode"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "switchable_modes": {
+                    "contains": {
+                      "const": "canvas"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "execution": {
+      "type": "object",
+      "required": [
+        "requested_mode",
+        "route_policy",
+        "timeout_ms"
+      ],
+      "properties": {
+        "requested_mode": {
+          "type": "string",
+          "enum": [
+            "control",
+            "compute"
+          ]
+        },
+        "route_policy": {
+          "type": "string",
+          "enum": [
+            "default",
+            "latency_optimized",
+            "cost_optimized"
+          ]
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 3600000
+        }
+      },
+      "additionalProperties": false
+    },
+    "requires_capabilities": {
+      "type": "array",
+      "description": "Optional dependencies that must be resolvable from capability registry.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_\\-]{2,63}(?:@[0-9A-Za-z._\\-]+)?$"
+      },
+      "uniqueItems": true
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "owner",
+        "tags",
+        "review_status"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "pending",
+            "approved",
+            "rejected",
+            "deprecated"
+          ]
+        },
+        "trust_level": {
+          "type": "string",
+          "enum": [
+            "official",
+            "internal",
+            "user"
+          ]
+        },
+        "policy_profile": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "additionalProperties": false
+    },
+    "distribution": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "enum": [
+            "private",
+            "internal",
+            "marketplace"
+          ]
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 32
+          },
+          "uniqueItems": true
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+          },
+          "uniqueItems": true
+        },
+        "billing_profile": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
