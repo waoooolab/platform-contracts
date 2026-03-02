@@ -23,6 +23,14 @@ Policy reference:
 - [added] jsonschema/runtime/runtime-route-event.v1.json -
   backward-compatible: runtime route decision/failure event contract
   (`runtime.route.decided`, `runtime.route.failed`) (migration: n/a)
+- [changed] jsonschema/runtime/runtime-route-event.v1.json -
+  backward-compatible: add optional orchestration metadata block
+  (`parent_run_id`, `parent_task_id`, `run_depth`, `child_run_ids`,
+  cancellation fields) for parent-child telemetry alignment (migration: n/a)
+- [added] jsonschema/runtime/runtime-run-event.v1.json -
+  backward-compatible: run requested/status event contract
+  (`runtime.run.requested`, `runtime.run.status`) with route and
+  orchestration payload shape (migration: n/a)
 - [added] jsonschema/runtime/device-route-event.v1.json -
   backward-compatible: device route and lease lifecycle event contract
   (`device.route.*`, `device.lease.*`) (migration: n/a)
