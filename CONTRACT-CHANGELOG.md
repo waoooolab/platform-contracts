@@ -20,6 +20,9 @@ Policy reference:
 - [added] jsonschema/runtime/execution-profile.v1.json - backward-compatible:
   contract-driven route input for control/compute and placement constraints
   (migration: n/a)
+- [added] jsonschema/runtime/execution-context.v1.json - backward-compatible:
+  task-plane and executor/runtime context contract for runtime ingress validation
+  (migration: n/a)
 - [added] jsonschema/runtime/runtime-route-event.v1.json -
   backward-compatible: runtime route decision/failure event contract
   (`runtime.route.decided`, `runtime.route.failed`) (migration: n/a)
