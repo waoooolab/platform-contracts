@@ -123,6 +123,120 @@
             "lease_id": {
               "type": "string",
               "minLength": 1
+            },
+            "scheduling_signal": {
+              "type": "object",
+              "required": [
+                "queue_score",
+                "dispatch_min_score"
+              ],
+              "properties": {
+                "queue_score": {
+                  "type": "number"
+                },
+                "dispatch_min_score": {
+                  "type": "number"
+                },
+                "compute_capacity": {
+                  "type": "object",
+                  "required": [
+                    "source",
+                    "status",
+                    "available_slots",
+                    "lease_utilization",
+                    "penalty"
+                  ],
+                  "properties": {
+                    "source": {
+                      "type": "string",
+                      "enum": [
+                        "device_hub"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "capacity_exhausted",
+                        "utilization_high",
+                        "utilization_elevated",
+                        "healthy"
+                      ]
+                    },
+                    "available_slots": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "lease_utilization": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "penalty": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "scheduling_signal": {
+          "type": "object",
+          "required": [
+            "queue_score",
+            "dispatch_min_score"
+          ],
+          "properties": {
+            "queue_score": {
+              "type": "number"
+            },
+            "dispatch_min_score": {
+              "type": "number"
+            },
+            "compute_capacity": {
+              "type": "object",
+              "required": [
+                "source",
+                "status",
+                "available_slots",
+                "lease_utilization",
+                "penalty"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "device_hub"
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "capacity_exhausted",
+                    "utilization_high",
+                    "utilization_elevated",
+                    "healthy"
+                  ]
+                },
+                "available_slots": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "lease_utilization": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "penalty": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
             }
           },
           "additionalProperties": false
