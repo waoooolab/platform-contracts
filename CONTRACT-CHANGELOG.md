@@ -34,6 +34,12 @@ Policy reference:
   backward-compatible: run requested/status event contract
   (`runtime.run.requested`, `runtime.run.status`) with route and
   orchestration payload shape (migration: n/a)
+- [changed] jsonschema/runtime/runtime-run-event.v1.json -
+  backward-compatible: add optional `payload.execution_context` for task-plane
+  and executor/runtime context observability (migration: n/a)
+- [changed] jsonschema/runtime/runtime-route-event.v1.json -
+  backward-compatible: add optional `payload.execution_context` for route
+  decision/failure telemetry alignment (migration: n/a)
 - [added] jsonschema/runtime/device-route-event.v1.json -
   backward-compatible: device route and lease lifecycle event contract
   (`device.route.*`, `device.lease.*`) (migration: n/a)

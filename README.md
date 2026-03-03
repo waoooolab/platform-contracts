@@ -22,6 +22,7 @@ Runtime contracts (P6 routing and placement):
 - `jsonschema/runtime/execution-context.v1.json` (task-plane + executor/runtime context input)
 - `jsonschema/runtime/runtime-route-event.v1.json` (`runtime.route.*` events)
 - `jsonschema/runtime/runtime-run-event.v1.json` (`runtime.run.requested` + `runtime.run.status` events, including orchestration metadata)
+- route/run event payloads may include optional `execution_context` for task-plane and executor/runtime observability
 - `jsonschema/runtime/device-route-event.v1.json` (`device.route.*` + `device.lease.*` events)
 
 App capability contracts (P6 app-mode baseline):
