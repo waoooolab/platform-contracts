@@ -20,6 +20,7 @@ Runtime contracts (P0 baseline):
 Runtime contracts (P6 routing and placement):
 - `jsonschema/runtime/execution-profile.v1.json` (control/compute route input)
 - `jsonschema/runtime/execution-context.v1.json` (task-plane + executor/runtime context input)
+- `jsonschema/runtime/orchestration-hints.v1.json` (run hierarchy + queue priority + scheduling hint input)
 - `jsonschema/runtime/executor-profile-catalog.v1.json` (runtime-supported executor family/engine/adapter catalog output)
 - `jsonschema/runtime/runtime-route-event.v1.json` (`runtime.route.*` events)
 - `jsonschema/runtime/runtime-run-event.v1.json` (`runtime.run.requested` + `runtime.run.status` events, including orchestration metadata)
