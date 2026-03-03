@@ -58,5 +58,24 @@ Policy reference:
   schema evolution enforcement workflow (migration: n/a)
 - [added] jsonschema/tool-contract.v1.json - backward-compatible: baseline tool
   invocation contract (migration: n/a)
+- [changed] jsonschema/runtime/execution-context.v1.json - backward-compatible:
+  align executor adapter axis to canonical program values
+  (`orchestrator|ccb|runtime_api|native`) and add optional
+  `executor.access_mode` (`direct|api`) + `executor.window_mode`
+  (`inline|terminal_mux`) for split-axis executor observability
+  (migration: n/a)
+- [changed] jsonschema/runtime/executor-profile-catalog.v1.json -
+  backward-compatible: align `items[].adapters` to canonical execution program
+  values and add required `items[].access_modes` + `items[].window_modes`
+  arrays (migration: ensure runtime-gateway/runtime-execution profile endpoints
+  include the two new fields)
+- [changed] jsonschema/runtime/runtime-route-event.v1.json -
+  backward-compatible: update nested `payload.execution_context.executor.adapter`
+  enum to canonical program values and allow optional nested
+  `access_mode/window_mode` (migration: n/a)
+- [changed] jsonschema/runtime/runtime-run-event.v1.json -
+  backward-compatible: update nested `payload.execution_context.executor.adapter`
+  enum to canonical program values and allow optional nested
+  `access_mode/window_mode` (migration: n/a)
 
 ## History

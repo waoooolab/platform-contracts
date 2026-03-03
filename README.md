@@ -26,6 +26,10 @@ Runtime contracts (P6 routing and placement):
 - `jsonschema/runtime/runtime-run-event.v1.json` (`runtime.run.requested` + `runtime.run.status` events, including orchestration metadata)
 - route/run event payloads may include optional `execution_context` for task-plane and executor/runtime observability
 - `jsonschema/runtime/device-route-event.v1.json` (`device.route.*` + `device.lease.*` events)
+- canonical executor axis in runtime contracts:
+  - `adapter`: `orchestrator|ccb|runtime_api|native`
+  - optional `access_mode`: `direct|api`
+  - optional `window_mode`: `inline|terminal_mux`
 
 App capability contracts (P6 app-mode baseline):
 - `jsonschema/app/app-capability.v1.json` (workflow-to-app publishable capability package, with optional dependency/policy/distribution metadata for capability registry gating)
