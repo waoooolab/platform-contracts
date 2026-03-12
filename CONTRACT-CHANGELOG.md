@@ -89,5 +89,9 @@ Policy reference:
   backward-compatible: add optional `recommended_poll_after_ms` numeric hint
   (100-60000 ms) so event consumers can standardize poll cadence guidance
   directly in page responses (migration: n/a)
+- [changed] jsonschema/runtime/runtime-run-lease.v1.json -
+  backward-compatible: add optional `recommended_poll_after_ms` numeric hint
+  (100-60000 ms) to align lease lookup responses with standardized poll cadence
+  guidance across gateway and control forwarding paths (migration: n/a)
 
 ## History
