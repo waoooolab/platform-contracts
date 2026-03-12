@@ -85,5 +85,9 @@ Policy reference:
   run lease projection contract (`run_id`, `lease`, `device_hub`) for
   runtime-execution/runtime-gateway/control-gateway lease lookup endpoints
   (migration: n/a)
+- [changed] jsonschema/runtime/runtime-events-page.v1.json -
+  backward-compatible: add optional `recommended_poll_after_ms` numeric hint
+  (100-60000 ms) so event consumers can standardize poll cadence guidance
+  directly in page responses (migration: n/a)
 
 ## History
