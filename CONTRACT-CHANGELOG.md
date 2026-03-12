@@ -77,5 +77,9 @@ Policy reference:
   backward-compatible: update nested `payload.execution_context.executor.adapter`
   enum to canonical program values and allow optional nested
   `access_mode/window_mode` (migration: n/a)
+- [added] jsonschema/runtime/runtime-events-page.v1.json - backward-compatible:
+  cursor-page response contract for runtime event reads (`items`, `next_cursor`,
+  `has_more`, `stats`) to keep gateway/control pagination semantics aligned
+  (migration: n/a)
 
 ## History
