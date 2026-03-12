@@ -81,5 +81,9 @@ Policy reference:
   cursor-page response contract for runtime event reads (`items`, `next_cursor`,
   `has_more`, `stats`) to keep gateway/control pagination semantics aligned
   (migration: n/a)
+- [added] jsonschema/runtime/runtime-run-lease.v1.json - backward-compatible:
+  run lease projection contract (`run_id`, `lease`, `device_hub`) for
+  runtime-execution/runtime-gateway/control-gateway lease lookup endpoints
+  (migration: n/a)
 
 ## History
