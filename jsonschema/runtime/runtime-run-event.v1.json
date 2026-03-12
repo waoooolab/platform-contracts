@@ -474,6 +474,10 @@
             "cancellation_reason": {
               "type": "string",
               "minLength": 1
+            },
+            "failure_reason_code": {
+              "type": "string",
+              "minLength": 1
             }
           },
           "additionalProperties": false
