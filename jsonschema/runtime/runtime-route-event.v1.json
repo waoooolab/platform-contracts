@@ -68,6 +68,21 @@
           "type": "string",
           "minLength": 1
         },
+        "status": {
+          "type": "string",
+          "enum": [
+            "requested",
+            "queued",
+            "dispatching",
+            "running",
+            "waiting_approval",
+            "retrying",
+            "succeeded",
+            "failed",
+            "canceled",
+            "timed_out"
+          ]
+        },
         "execution_profile": {
           "type": "object",
           "required": [
