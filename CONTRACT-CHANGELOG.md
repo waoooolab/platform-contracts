@@ -5,6 +5,10 @@ Policy reference:
 
 ## Unreleased
 
+- [changed] jsonschema/runtime/device-route-event.v1.json -
+  backward-compatible: add `device.lease.renewed` event type and
+  `lease_renewed` decision outcome for explicit lease extension lifecycle
+  telemetry (migration: n/a)
 - [added] jsonschema/auth/token-claims.v1.json - backward-compatible: baseline
   auth claims contract (migration: n/a)
 - [added] jsonschema/auth/token-exchange.v1.json - backward-compatible:
