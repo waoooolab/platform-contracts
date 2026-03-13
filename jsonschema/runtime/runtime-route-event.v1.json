@@ -545,6 +545,10 @@
             "dispatch_min_score": {
               "type": "number"
             },
+            "recommended_poll_after_ms": {
+              "type": "integer",
+              "minimum": 0
+            },
             "compute_capacity": {
               "type": "object",
               "required": [
