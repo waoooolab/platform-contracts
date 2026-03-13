@@ -77,6 +77,11 @@ Policy reference:
   backward-compatible: update nested `payload.execution_context.executor.adapter`
   enum to canonical program values and allow optional nested
   `access_mode/window_mode` (migration: n/a)
+- [changed] jsonschema/runtime/runtime-run-event.v1.json -
+  backward-compatible: add optional route placement trace fields
+  (`placement_reason_code`, `placement_reason`, `placement_score`,
+  `placement_queue_depth`) for auditable compute routing decisions
+  (migration: n/a)
 - [added] jsonschema/runtime/runtime-events-page.v1.json - backward-compatible:
   cursor-page response contract for runtime event reads (`items`, `next_cursor`,
   `has_more`, `stats`) to keep gateway/control pagination semantics aligned

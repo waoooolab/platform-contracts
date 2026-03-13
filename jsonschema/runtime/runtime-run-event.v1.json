@@ -124,6 +124,22 @@
               "type": "string",
               "minLength": 1
             },
+            "placement_reason_code": {
+              "type": "string",
+              "minLength": 1
+            },
+            "placement_reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "placement_score": {
+              "type": "number",
+              "minimum": 0
+            },
+            "placement_queue_depth": {
+              "type": "integer",
+              "minimum": 0
+            },
             "scheduling_signal": {
               "type": "object",
               "required": [
