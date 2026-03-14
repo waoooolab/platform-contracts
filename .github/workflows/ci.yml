@@ -31,5 +31,8 @@ jobs:
       - name: Validate Schemas
         run: python scripts/validate_schemas.py
 
+      - name: Validate AsyncAPI
+        run: python scripts/validate_asyncapi.py
+
       - name: Enforce Changelog Policy
         run: python scripts/check_changelog_update.py

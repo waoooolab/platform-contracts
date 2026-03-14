@@ -5,7 +5,7 @@ Shared contract definitions for runtime services.
 
 Contains:
 - jsonschema: request/response/event/tool contracts
-- asyncapi: event stream contracts (future)
+- asyncapi: event stream contracts
 - protobuf: service contracts (future)
 
 Auth contracts (P0 baseline):
@@ -35,6 +35,9 @@ App capability contracts (P6 app-mode baseline):
 - `jsonschema/app/app-capability.v1.json` (workflow-to-app publishable capability package, with optional dependency/policy/distribution metadata for capability registry gating)
 - `jsonschema/app/app-capability-event.v1.json` (compile/publish/invoke lifecycle events for app capabilities)
 
+AsyncAPI contracts (P6 runtime events baseline):
+- `asyncapi/runtime-events.v1.json` (runtime/device event channel catalog with JSON Schema payload refs)
+
 Versioning policy:
 - Use SemVer at contract file level (`*.v1.json`, `*.v2.json`).
 - Additive fields are backward compatible in the same major version.
@@ -46,6 +49,7 @@ Changelog policy:
 
 Validation:
 - `scripts/validate_schemas.py`: schema syntax + naming + `$id` checks.
+- `scripts/validate_asyncapi.py`: asyncapi channel/message and payload-ref checks.
 - `scripts/check_changelog_update.py`: changelog policy enforcement.
 - `.github/workflows/ci.yml`: cross-platform CI for PR/push
   (Ubuntu/Windows/macOS with Python 3.11 and 3.12).

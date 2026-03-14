@@ -1,0 +1,64 @@
+{
+  "asyncapi": "2.6.0",
+  "id": "https://waoooolab.dev/contracts/asyncapi/runtime-events.v1.json",
+  "info": {
+    "title": "WaoooLab Runtime Events API",
+    "version": "1.0.0",
+    "description": "Minimal runtime event stream contract for cross-service interoperability."
+  },
+  "defaultContentType": "application/json",
+  "channels": {
+    "runtime.run": {
+      "description": "Run lifecycle events emitted by runtime-execution.",
+      "subscribe": {
+        "summary": "Consume runtime run lifecycle events",
+        "message": {
+          "$ref": "#/components/messages/RuntimeRunEvent"
+        }
+      }
+    },
+    "runtime.route": {
+      "description": "Route decision/failure events emitted by runtime-execution.",
+      "subscribe": {
+        "summary": "Consume runtime route decision/failure events",
+        "message": {
+          "$ref": "#/components/messages/RuntimeRouteEvent"
+        }
+      }
+    },
+    "device.route": {
+      "description": "Device route/lease lifecycle events emitted by device-hub.",
+      "subscribe": {
+        "summary": "Consume device route and lease lifecycle events",
+        "message": {
+          "$ref": "#/components/messages/DeviceRouteEvent"
+        }
+      }
+    }
+  },
+  "components": {
+    "messages": {
+      "RuntimeRunEvent": {
+        "name": "RuntimeRunEvent",
+        "title": "Runtime run event",
+        "payload": {
+          "$ref": "../jsonschema/runtime/runtime-run-event.v1.json"
+        }
+      },
+      "RuntimeRouteEvent": {
+        "name": "RuntimeRouteEvent",
+        "title": "Runtime route event",
+        "payload": {
+          "$ref": "../jsonschema/runtime/runtime-route-event.v1.json"
+        }
+      },
+      "DeviceRouteEvent": {
+        "name": "DeviceRouteEvent",
+        "title": "Device route event",
+        "payload": {
+          "$ref": "../jsonschema/runtime/device-route-event.v1.json"
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,9 @@ Policy reference:
 
 ## Unreleased
 
+- [added] asyncapi/runtime-events.v1.json - backward-compatible: introduce
+  machine-readable runtime/device event channel catalog with payload refs to
+  existing runtime jsonschema contracts (migration: n/a)
 - [changed] jsonschema/runtime/device-route-event.v1.json -
   backward-compatible: add `device.lease.renewed` event type and
   `lease_renewed` decision outcome for explicit lease extension lifecycle
