@@ -501,7 +501,8 @@
             },
             "reason_code": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "pattern": "^[a-z0-9_]+$"
             },
             "placement_event_type": {
               "type": "string",
@@ -618,7 +619,8 @@
           "properties": {
             "code": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "pattern": "^[a-z0-9_]+$"
             },
             "message": {
               "type": "string",
@@ -681,7 +683,8 @@
             },
             "failure_reason_code": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "pattern": "^[a-z0-9_]+$"
             }
           },
           "additionalProperties": false

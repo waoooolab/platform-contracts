@@ -105,5 +105,24 @@ Policy reference:
   backward-compatible: add optional `recommended_poll_after_ms` numeric hint
   (100-60000 ms) to align lease lookup responses with standardized poll cadence
   guidance across gateway and control forwarding paths (migration: n/a)
+- [changed] jsonschema/runtime/runtime-route-event.v1.json -
+  backward-compatible: enforce snake_case naming pattern for
+  `payload.decision.reason_code`, `payload.failure.code`, and
+  `payload.orchestration.failure_reason_code` to reduce cross-service
+  diagnostics drift (migration: reason/code fields must match
+  `^[a-z0-9_]+$`)
+- [changed] jsonschema/runtime/runtime-run-event.v1.json -
+  backward-compatible: enforce snake_case naming pattern for
+  `payload.route.placement_reason_code` and
+  `payload.orchestration.failure_reason_code` (migration: reason/code fields
+  must match `^[a-z0-9_]+$`)
+- [changed] jsonschema/runtime/device-route-event.v1.json -
+  backward-compatible: enforce snake_case naming pattern for
+  `payload.decision.reason_code` (migration: reason/code fields must match
+  `^[a-z0-9_]+$`)
+- [changed] jsonschema/app/app-capability-event.v1.json -
+  backward-compatible: enforce snake_case naming pattern for
+  `payload.failure.code` (migration: reason/code fields must match
+  `^[a-z0-9_]+$`)
 
 ## History
