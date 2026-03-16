@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ai/completion-result.v1.json",
+  "title": "AI Gateway Completion Result",
+  "type": "object",
+  "required": [
+    "id",
+    "model",
+    "routing",
+    "cost_metadata"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "routing": {
+      "type": "object",
+      "required": [
+        "requested_model",
+        "selected_model",
+        "selected_provider",
+        "requested_tags",
+        "fallback_applied",
+        "fallback_reason_code"
+      ],
+      "properties": {
+        "requested_model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requested_tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "fallback_applied": {
+          "type": "boolean"
+        },
+        "fallback_reason_code": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "cost_metadata": {
+      "type": "object",
+      "required": [
+        "prompt_tokens",
+        "completion_tokens",
+        "total_tokens",
+        "estimated_cost_usd"
+      ],
+      "properties": {
+        "prompt_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completion_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimated_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
