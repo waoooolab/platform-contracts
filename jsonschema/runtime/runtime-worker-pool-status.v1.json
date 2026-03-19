@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/runtime-worker-pool-status.v1.json",
+  "title": "RuntimeWorkerPoolStatusV1",
+  "description": "Worker pool status projection for runtime orchestration worker-pool endpoints.",
+  "type": "object",
+  "required": [
+    "desired_workers",
+    "active_workers",
+    "scheduler_depth",
+    "queue_depth",
+    "lifecycle_state",
+    "is_running",
+    "pool_health_state",
+    "is_stalled",
+    "last_heartbeat_age_seconds",
+    "is_heartbeat_stale",
+    "ticks_total",
+    "processed_total",
+    "last_tick_workers",
+    "last_tick_outcome",
+    "last_tick_at",
+    "last_heartbeat_at",
+    "last_should_continue",
+    "last_scheduler_should_continue",
+    "last_loop_should_continue",
+    "last_has_pending_work",
+    "last_saturation_signal",
+    "last_stalled_signal",
+    "last_scale_up_signal",
+    "last_remaining",
+    "last_anomaly_ratio",
+    "last_progressed_ratio",
+    "last_retry_deferred_total",
+    "last_retry_rejected_total",
+    "last_reject_pending_signal",
+    "last_control_counts",
+    "last_control_outcome",
+    "last_control_signal",
+    "last_recommended_desired_workers",
+    "scale_total",
+    "last_scale_at",
+    "recommended_poll_after_ms"
+  ],
+  "properties": {
+    "desired_workers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "active_workers": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 64
+    },
+    "scheduler_depth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "queue_depth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "enum": [
+        "running",
+        "stopped"
+      ]
+    },
+    "is_running": {
+      "type": "boolean"
+    },
+    "pool_health_state": {
+      "type": "string",
+      "enum": [
+        "healthy",
+        "degraded",
+        "stalled",
+        "stopped"
+      ]
+    },
+    "is_stalled": {
+      "type": "boolean"
+    },
+    "last_heartbeat_age_seconds": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "is_heartbeat_stale": {
+      "type": "boolean"
+    },
+    "ticks_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "processed_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_tick_workers": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 64
+    },
+    "last_tick_outcome": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "idle",
+            "progressed"
+          ]
+        }
+      ]
+    },
+    "last_tick_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "last_heartbeat_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "last_should_continue": {
+      "type": "boolean"
+    },
+    "last_scheduler_should_continue": {
+      "type": "boolean"
+    },
+    "last_loop_should_continue": {
+      "type": "boolean"
+    },
+    "last_has_pending_work": {
+      "type": "boolean"
+    },
+    "last_saturation_signal": {
+      "type": "boolean"
+    },
+    "last_stalled_signal": {
+      "type": "boolean"
+    },
+    "last_scale_up_signal": {
+      "type": "boolean"
+    },
+    "last_remaining": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_anomaly_ratio": {
+      "type": "number",
+      "minimum": 0
+    },
+    "last_progressed_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "last_retry_deferred_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_retry_rejected_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_reject_pending_signal": {
+      "type": "boolean"
+    },
+    "last_control_counts": {
+      "type": "object",
+      "required": [
+        "queue",
+        "defer",
+        "reject"
+      ],
+      "properties": {
+        "queue": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defer": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reject": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "last_control_outcome": {
+      "type": "string",
+      "enum": [
+        "dispatch",
+        "queue",
+        "defer",
+        "reject"
+      ]
+    },
+    "last_control_signal": {
+      "type": "object",
+      "required": [
+        "queue_pending",
+        "defer_pending",
+        "reject_pending"
+      ],
+      "properties": {
+        "queue_pending": {
+          "type": "boolean"
+        },
+        "defer_pending": {
+          "type": "boolean"
+        },
+        "reject_pending": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "last_recommended_desired_workers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "scale_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_scale_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "recommended_poll_after_ms": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 60000
+    }
+  },
+  "additionalProperties": true
+}
