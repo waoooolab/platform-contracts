@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/runtime-worker-pool-loop.v1.json",
+  "title": "RuntimeWorkerPoolLoopV1",
+  "description": "Worker-pool loop projection for runtime orchestration worker-pool endpoints.",
+  "type": "object",
+  "required": [
+    "iterations",
+    "max_iterations",
+    "processed_total",
+    "loop_should_continue",
+    "remaining",
+    "scheduler_depth_after",
+    "stopped_reason",
+    "recommended_poll_after_ms",
+    "autoscale_enabled",
+    "lifecycle_state",
+    "is_running",
+    "ticks",
+    "final_tick"
+  ],
+  "properties": {
+    "iterations": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_iterations": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 256
+    },
+    "processed_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "loop_should_continue": {
+      "type": "boolean"
+    },
+    "remaining": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "scheduler_depth_after": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "stopped_reason": {
+      "type": "string",
+      "enum": [
+        "idle",
+        "drained",
+        "max_iterations_reached"
+      ]
+    },
+    "recommended_poll_after_ms": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 60000
+    },
+    "autoscale_enabled": {
+      "type": "boolean"
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "enum": [
+        "running",
+        "stopped"
+      ]
+    },
+    "is_running": {
+      "type": "boolean"
+    },
+    "ticks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "iteration",
+          "processed",
+          "remaining",
+          "loop_should_continue",
+          "recommended_poll_after_ms"
+        ],
+        "properties": {
+          "iteration": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "processed": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "remaining": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "loop_should_continue": {
+            "type": "boolean"
+          },
+          "recommended_poll_after_ms": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 60000
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "final_tick": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "desired_workers",
+            "remaining",
+            "scheduler_depth_after",
+            "loop_should_continue",
+            "recommended_poll_after_ms",
+            "lifecycle_state",
+            "is_running",
+            "control_counts",
+            "control_outcome",
+            "control_signal"
+          ],
+          "properties": {
+            "desired_workers": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "remaining": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "scheduler_depth_after": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "loop_should_continue": {
+              "type": "boolean"
+            },
+            "recommended_poll_after_ms": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 60000
+            },
+            "lifecycle_state": {
+              "type": "string",
+              "enum": [
+                "running",
+                "stopped"
+              ]
+            },
+            "is_running": {
+              "type": "boolean"
+            },
+            "control_counts": {
+              "type": "object",
+              "required": [
+                "queue",
+                "defer",
+                "reject"
+              ],
+              "properties": {
+                "queue": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "defer": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "reject": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "control_outcome": {
+              "type": "string",
+              "enum": [
+                "dispatch",
+                "queue",
+                "defer",
+                "reject"
+              ]
+            },
+            "control_signal": {
+              "type": "object",
+              "required": [
+                "queue_pending",
+                "defer_pending",
+                "reject_pending"
+              ],
+              "properties": {
+                "queue_pending": {
+                  "type": "boolean"
+                },
+                "defer_pending": {
+                  "type": "boolean"
+                },
+                "reject_pending": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": true
+        }
+      ]
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,450 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/runtime-worker-pool-tick.v1.json",
+  "title": "RuntimeWorkerPoolTickV1",
+  "description": "Worker-pool tick projection for runtime orchestration worker-pool endpoints.",
+  "type": "object",
+  "required": [
+    "desired_workers",
+    "desired_workers_before_tick",
+    "workers_used",
+    "scheduler_max_items",
+    "scheduler_fair",
+    "worker_max_items",
+    "worker_fair",
+    "auto_start",
+    "autoscale_enabled",
+    "autoscale_applied",
+    "autoscale_previous_workers",
+    "autoscale_target_workers",
+    "autoscale_reason",
+    "scheduler_signal",
+    "worker_signals",
+    "queue_depth_before",
+    "queue_depth_after",
+    "scheduler_depth_after",
+    "remaining",
+    "processed",
+    "outcome_counts",
+    "anomaly_total",
+    "anomaly_ratio",
+    "progressed_ratio",
+    "stalled_signal",
+    "retry_pending_signal",
+    "retry_deferred_total",
+    "reject_pending_signal",
+    "retry_rejected_total",
+    "control_counts",
+    "control_outcome",
+    "control_signal",
+    "should_continue",
+    "scheduler_should_continue",
+    "loop_should_continue",
+    "has_pending_work",
+    "saturation_signal",
+    "scale_up_signal",
+    "recommended_desired_workers",
+    "pool_outcome",
+    "last_tick_at",
+    "lifecycle_state",
+    "is_running",
+    "recommended_poll_after_ms",
+    "scheduling_signal",
+    "lease_renew_signal"
+  ],
+  "properties": {
+    "desired_workers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "desired_workers_before_tick": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "workers_used": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 64
+    },
+    "scheduler_max_items": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "scheduler_fair": {
+      "type": "boolean"
+    },
+    "worker_max_items": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "worker_fair": {
+      "type": "boolean"
+    },
+    "auto_start": {
+      "type": "boolean"
+    },
+    "autoscale_enabled": {
+      "type": "boolean"
+    },
+    "autoscale_applied": {
+      "type": "boolean"
+    },
+    "autoscale_previous_workers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "autoscale_target_workers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "autoscale_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "scale_up_recommended",
+        "scale_down_idle",
+        null
+      ]
+    },
+    "scheduler_signal": {
+      "type": "object",
+      "required": [
+        "processed",
+        "promoted",
+        "rescheduled",
+        "deferred",
+        "misfired",
+        "scheduler_depth_before",
+        "scheduler_depth_after",
+        "orchestration_depth_after",
+        "next_due_at",
+        "next_due_in_ms",
+        "should_continue",
+        "recommended_poll_after_ms",
+        "outcomes"
+      ],
+      "properties": {
+        "processed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "promoted": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rescheduled": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deferred": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "misfired": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scheduler_depth_before": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scheduler_depth_after": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "orchestration_depth_after": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "next_due_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "next_due_in_ms": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "should_continue": {
+          "type": "boolean"
+        },
+        "recommended_poll_after_ms": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 60000
+        },
+        "outcomes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "worker_signals": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "queue_depth_before": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "queue_depth_after": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "scheduler_depth_after": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "remaining": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "processed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "outcome_counts": {
+      "type": "object",
+      "required": [
+        "progressed",
+        "missing_run",
+        "skipped"
+      ],
+      "properties": {
+        "progressed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missing_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skipped": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "anomaly_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "anomaly_ratio": {
+      "type": "number",
+      "minimum": 0
+    },
+    "progressed_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "stalled_signal": {
+      "type": "boolean"
+    },
+    "retry_pending_signal": {
+      "type": "boolean"
+    },
+    "retry_deferred_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reject_pending_signal": {
+      "type": "boolean"
+    },
+    "retry_rejected_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "control_counts": {
+      "type": "object",
+      "required": [
+        "queue",
+        "defer",
+        "reject"
+      ],
+      "properties": {
+        "queue": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defer": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reject": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "control_outcome": {
+      "type": "string",
+      "enum": [
+        "dispatch",
+        "queue",
+        "defer",
+        "reject"
+      ]
+    },
+    "control_signal": {
+      "type": "object",
+      "required": [
+        "queue_pending",
+        "defer_pending",
+        "reject_pending"
+      ],
+      "properties": {
+        "queue_pending": {
+          "type": "boolean"
+        },
+        "defer_pending": {
+          "type": "boolean"
+        },
+        "reject_pending": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "should_continue": {
+      "type": "boolean"
+    },
+    "scheduler_should_continue": {
+      "type": "boolean"
+    },
+    "loop_should_continue": {
+      "type": "boolean"
+    },
+    "has_pending_work": {
+      "type": "boolean"
+    },
+    "saturation_signal": {
+      "type": "boolean"
+    },
+    "scale_up_signal": {
+      "type": "boolean"
+    },
+    "recommended_desired_workers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "pool_outcome": {
+      "type": "string",
+      "enum": [
+        "idle",
+        "progressed"
+      ]
+    },
+    "last_tick_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "enum": [
+        "running",
+        "stopped"
+      ]
+    },
+    "is_running": {
+      "type": "boolean"
+    },
+    "recommended_poll_after_ms": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 60000
+    },
+    "scheduling_signal": {
+      "type": "object",
+      "required": [
+        "control_counts",
+        "control_outcome",
+        "control_signal",
+        "recommended_poll_after_ms"
+      ],
+      "properties": {
+        "control_counts": {
+          "type": "object",
+          "required": [
+            "queue",
+            "defer",
+            "reject"
+          ],
+          "properties": {
+            "queue": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "defer": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "reject": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "control_outcome": {
+          "type": "string",
+          "enum": [
+            "dispatch",
+            "queue",
+            "defer",
+            "reject"
+          ]
+        },
+        "control_signal": {
+          "type": "object",
+          "required": [
+            "queue_pending",
+            "defer_pending",
+            "reject_pending"
+          ],
+          "properties": {
+            "queue_pending": {
+              "type": "boolean"
+            },
+            "defer_pending": {
+              "type": "boolean"
+            },
+            "reject_pending": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "recommended_poll_after_ms": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 60000
+        }
+      },
+      "additionalProperties": true
+    },
+    "lease_renew_signal": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}
