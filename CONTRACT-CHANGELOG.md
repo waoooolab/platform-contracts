@@ -5,6 +5,13 @@ Policy reference:
 
 ## Unreleased
 
+- [added] jsonschema/runtime/gate-evidence.v1.json - backward-compatible:
+  add lifecycle-gate evidence contract (`runtime.gate.evidence`) for
+  irreversible transition checks (`lane_cleanup`, branch delete, objective
+  archive, policy flip, release finalize) with dual-confirm payload surface and
+  control aggregation index hints (`outbox_seq`, `cursor`) (migration: producer
+  implementations should emit `task_id`, `gate_status`, `confirmed_at`, and for
+  `lane_cleanup` + `passed` provide dual-confirm shas/flags)
 - [added] asyncapi/runtime-events.v1.json - backward-compatible: introduce
   machine-readable runtime/device event channel catalog with payload refs to
   existing runtime jsonschema contracts (migration: n/a)

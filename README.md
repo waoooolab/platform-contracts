@@ -24,6 +24,7 @@ Runtime contracts (P6 routing and placement):
 - `jsonschema/runtime/executor-profile-catalog.v1.json` (runtime-supported executor family/engine/adapter catalog output)
 - `jsonschema/runtime/runtime-route-event.v1.json` (`runtime.route.*` events)
 - `jsonschema/runtime/runtime-run-event.v1.json` (`runtime.run.requested` + `runtime.run.status` events, including orchestration metadata)
+- `jsonschema/runtime/gate-evidence.v1.json` (`runtime.gate.evidence` lifecycle-gate evidence for irreversible transition contracts)
 - route/run event payloads may include optional `execution_context` for task-plane and executor/runtime observability
 - `jsonschema/runtime/device-route-event.v1.json` (`device.route.*` + `device.lease.*` events)
 - canonical executor axis in runtime contracts:

@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/gate-evidence.v1.json",
+  "title": "GateEvidenceV1",
+  "description": "Canonical lifecycle-gate evidence contract for irreversible transition checks and control-plane aggregation reads.",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "event_type",
+    "gate_type",
+    "gate_status",
+    "confirmed_at",
+    "source",
+    "task_id"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "const": "runtime.gate.evidence"
+    },
+    "gate_type": {
+      "type": "string",
+      "enum": [
+        "lane_cleanup",
+        "branch_delete",
+        "objective_archive",
+        "policy_flip",
+        "release_finalize"
+      ]
+    },
+    "gate_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "bypassed"
+      ]
+    },
+    "confirmed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "ops.lane_workflow",
+        "runtime.execution",
+        "runtime.gateway",
+        "control.gateway",
+        "manual.override"
+      ]
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objective_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "app_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "gate_decision": {
+      "type": "object",
+      "required": [
+        "worker_confirmed",
+        "leader_confirmed"
+      ],
+      "properties": {
+        "worker_confirmed": {
+          "type": "boolean"
+        },
+        "leader_confirmed": {
+          "type": "boolean"
+        },
+        "worker_commit_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "leader_merge_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "reason_code": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "lane_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "worktree_mode": {
+          "type": "string",
+          "enum": [
+            "worktree",
+            "clone"
+          ]
+        },
+        "board_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "aggregation": {
+      "type": "object",
+      "properties": {
+        "outbox_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indexed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "gate_type": {
+            "const": "lane_cleanup"
+          },
+          "gate_status": {
+            "const": "passed"
+          }
+        },
+        "required": [
+          "gate_type",
+          "gate_status"
+        ]
+      },
+      "then": {
+        "required": [
+          "gate_decision",
+          "context"
+        ],
+        "properties": {
+          "gate_decision": {
+            "required": [
+              "worker_confirmed",
+              "leader_confirmed",
+              "worker_commit_sha",
+              "leader_merge_sha"
+            ],
+            "properties": {
+              "worker_confirmed": {
+                "const": true
+              },
+              "leader_confirmed": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}
