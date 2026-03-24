@@ -5,6 +5,11 @@ Policy reference:
 
 ## Unreleased
 
+- [added] jsonschema/runtime/tool-catalog.v1.json - backward-compatible:
+  authoritative tool-plane catalog contract (`source`, `provenance`, `profile`,
+  `optionality`) for runtime/gateway/control tool catalog parity (migration:
+  runtime-execution authoritative catalog endpoint and forwarding surfaces should
+  emit `schema_version=tool_catalog.v1`)
 - [added] jsonschema/runtime/instance-taxonomy.v1.json - backward-compatible:
   canonical instance/workspace taxonomy contract for deployment/control/runtime
   alignment (`deployment|gateway|runtime_instance|run|session|agent` and
