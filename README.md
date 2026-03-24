@@ -12,6 +12,9 @@ Auth contracts (P0 baseline):
 - `jsonschema/auth/token-claims.v1.json`
 - `jsonschema/auth/token-exchange.v1.json`
 - `jsonschema/auth/device-token.v1.json`
+- A7 de-brand retirement schedule:
+  - `DEBRAND-COMPATIBILITY-WINDOW.md` (legacy `urn:waoooolab:*` to neutral
+    `urn:owa:*` migration timeline)
 
 Runtime contracts (P0 baseline):
 - `jsonschema/command-envelope.v1.json` (idempotency + retry semantics)
