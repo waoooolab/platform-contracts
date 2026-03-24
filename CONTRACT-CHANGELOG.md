@@ -5,6 +5,12 @@ Policy reference:
 
 ## Unreleased
 
+- [added] jsonschema/runtime/instance-taxonomy.v1.json - backward-compatible:
+  canonical instance/workspace taxonomy contract for deployment/control/runtime
+  alignment (`deployment|gateway|runtime_instance|run|session|agent` and
+  `mainline_workspace|agent_workspace|lane_workspace|tenant_workspace`) with
+  frozen mapping rules (migration: runtime/control responses should expose this
+  payload shape when publishing taxonomy metadata)
 - [added] jsonschema/runtime/gate-evidence.v1.json - backward-compatible:
   add lifecycle-gate evidence contract (`runtime.gate.evidence`) for
   irreversible transition checks (`lane_cleanup`, branch delete, objective

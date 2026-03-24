@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.owaooo.ai/jsonschema/runtime/instance-taxonomy.v1.json",
+  "title": "Runtime Instance Taxonomy",
+  "description": "Canonical instance/workspace taxonomy contract shared across runtime and control planes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "instances",
+    "workspaces",
+    "mapping_rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "instance_taxonomy.v1"
+    },
+    "instances": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "deployment",
+          "gateway",
+          "runtime_instance",
+          "run",
+          "session",
+          "agent"
+        ]
+      }
+    },
+    "workspaces": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "mainline_workspace",
+          "agent_workspace",
+          "lane_workspace",
+          "tenant_workspace"
+        ]
+      }
+    },
+    "mapping_rules": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "string",
+        "enum": [
+          "plan_in_agent_workspace",
+          "execute_in_lane_workspace",
+          "integrate_via_mainline_workspace",
+          "runtime_governance_tracked_by_runtime_instance",
+          "product_tenancy_tracked_by_tenant_workspace"
+        ]
+      }
+    }
+  }
+}
