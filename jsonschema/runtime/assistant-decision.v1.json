@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/assistant-decision.v1.json",
+  "title": "AssistantDecisionV1",
+  "description": "Assistant-level orchestration decision boundary between direct assistant path and runtime-governed execution path.",
+  "type": "object",
+  "required": [
+    "decision_version",
+    "execution_path",
+    "decision_reason_code",
+    "entry_mode",
+    "task_plane",
+    "governance_signals",
+    "scenario_profile",
+    "chain_profile",
+    "agent_dispatch_policy",
+    "task_governance_policy"
+  ],
+  "properties": {
+    "decision_version": {
+      "type": "string",
+      "const": "assistant-boundary.v1"
+    },
+    "execution_path": {
+      "type": "string",
+      "enum": [
+        "assistant_direct",
+        "runtime_governed"
+      ]
+    },
+    "decision_reason_code": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entry_mode": {
+      "type": "string",
+      "enum": [
+        "assistant",
+        "workflow",
+        "tools",
+        "mixed"
+      ]
+    },
+    "task_plane": {
+      "type": "string",
+      "enum": [
+        "agent_work",
+        "workflow_work",
+        "runtime_workload"
+      ]
+    },
+    "governance_signals": {
+      "type": "object",
+      "required": [
+        "has_dispatch_policy",
+        "requires_durable_state",
+        "retry_attempts"
+      ],
+      "properties": {
+        "has_dispatch_policy": {
+          "type": "boolean"
+        },
+        "requires_durable_state": {
+          "type": "boolean"
+        },
+        "retry_attempts": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenario_profile": {
+      "type": "object",
+      "required": [
+        "scenario_id",
+        "decision_basis"
+      ],
+      "properties": {
+        "scenario_id": {
+          "type": "string",
+          "enum": [
+            "coding_assistant",
+            "visual_generation",
+            "operations"
+          ]
+        },
+        "decision_basis": {
+          "type": "string",
+          "enum": [
+            "user_entry",
+            "task_plane",
+            "workload_signal"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "chain_profile": {
+      "type": "object",
+      "required": [
+        "chain_id",
+        "planning_mode"
+      ],
+      "properties": {
+        "chain_id": {
+          "type": "string",
+          "enum": [
+            "assistant_loop",
+            "workflow_pipeline",
+            "tool_realtime",
+            "mixed_supervision"
+          ]
+        },
+        "planning_mode": {
+          "type": "string",
+          "enum": [
+            "iterative",
+            "compiled",
+            "direct",
+            "hybrid"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "agent_dispatch_policy": {
+      "type": "object",
+      "required": [
+        "dispatch_mode",
+        "target_executor"
+      ],
+      "properties": {
+        "dispatch_mode": {
+          "type": "string",
+          "enum": [
+            "single_agent",
+            "delegate_team",
+            "tool_first",
+            "hybrid"
+          ]
+        },
+        "target_executor": {
+          "type": "string",
+          "enum": [
+            "langgraph_core",
+            "runtime_execution",
+            "mixed"
+          ]
+        },
+        "preferred_providers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "task_governance_policy": {
+      "type": "object",
+      "required": [
+        "runtime_required",
+        "hitl_required",
+        "approval_mode"
+      ],
+      "properties": {
+        "runtime_required": {
+          "type": "boolean"
+        },
+        "hitl_required": {
+          "type": "boolean"
+        },
+        "approval_mode": {
+          "type": "string",
+          "enum": [
+            "none",
+            "required"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
