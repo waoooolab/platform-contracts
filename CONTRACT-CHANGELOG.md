@@ -15,6 +15,12 @@ Policy reference:
   `agent_contract_version`, `event_schema_version`) for end-to-end version
   observability on runtime event surfaces (migration: fields are optional in
   v1; event emitters can adopt incrementally)
+- [changed] jsonschema/runtime/runtime-run-event.v1.json and
+  jsonschema/runtime/runtime-route-event.v1.json - backward-compatible: allow
+  optional top-level contract-version fields (`task_contract_version`,
+  `agent_contract_version`, `event_schema_version`) so runtime event validators
+  remain compatible when envelopes project frozen version bindings (migration:
+  fields are optional in v1 and can roll out incrementally)
 - [added] jsonschema/runtime/tool-catalog.v1.json - backward-compatible:
   authoritative tool-plane catalog contract (`source`, `provenance`, `profile`,
   `optionality`) for runtime/gateway/control tool catalog parity (migration:
