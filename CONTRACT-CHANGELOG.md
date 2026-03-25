@@ -21,6 +21,17 @@ Policy reference:
   `agent_contract_version`, `event_schema_version`) so runtime event validators
   remain compatible when envelopes project frozen version bindings (migration:
   fields are optional in v1 and can roll out incrementally)
+- [changed] jsonschema/runtime/runtime-state.v1.json - backward-compatible: add
+  `dlq` to `run_status` enum for explicit dead-letter terminal semantics
+  (migration: existing statuses unchanged; `dlq` is additive)
+- [changed] jsonschema/runtime/runtime-run-event.v1.json and
+  jsonschema/runtime/runtime-route-event.v1.json - backward-compatible: add
+  optional `payload.compensation_spec` surface and allow `payload.status=dlq`
+  for compensation/DLQ contract projections (migration: fields are optional and
+  can be emitted incrementally)
+- [changed] jsonschema/command-envelope.v1.json - backward-compatible: add
+  optional top-level `compensation_spec` contract for submit-time compensation
+  plan binding (migration: producers may omit or roll out gradually)
 - [added] jsonschema/runtime/tool-catalog.v1.json - backward-compatible:
   authoritative tool-plane catalog contract (`source`, `provenance`, `profile`,
   `optionality`) for runtime/gateway/control tool catalog parity (migration:
