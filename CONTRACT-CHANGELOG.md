@@ -5,6 +5,16 @@ Policy reference:
 
 ## Unreleased
 
+- [changed] jsonschema/command-envelope.v1.json - backward-compatible: add
+  optional contract-version fields (`task_contract_version`,
+  `agent_contract_version`, `event_schema_version`) so admission/freeze logic
+  can bind explicit envelope versions without breaking existing producers
+  (migration: fields are optional in v1; producers may roll out gradually)
+- [changed] jsonschema/event-envelope.v1.json - backward-compatible: add
+  optional contract-version fields (`task_contract_version`,
+  `agent_contract_version`, `event_schema_version`) for end-to-end version
+  observability on runtime event surfaces (migration: fields are optional in
+  v1; event emitters can adopt incrementally)
 - [added] jsonschema/runtime/tool-catalog.v1.json - backward-compatible:
   authoritative tool-plane catalog contract (`source`, `provenance`, `profile`,
   `optionality`) for runtime/gateway/control tool catalog parity (migration:
