@@ -5,6 +5,14 @@ Policy reference:
 
 ## Unreleased
 
+- [changed] jsonschema/runtime/orchestration-hints.v1.json,
+  jsonschema/runtime/runtime-run-event.v1.json, and
+  jsonschema/runtime/runtime-route-event.v1.json - backward-compatible: add
+  optional nested delegation/autonomy governance payloads
+  (`nested_leader_contract`, `nested_autonomy_policy`) so outer-leader to
+  provider-internal subleader contracts and autonomy handoff policy can be
+  validated/projected deterministically without breaking existing producers
+  (migration: fields are optional in v1 and can be rolled out incrementally)
 - [changed] jsonschema/command-envelope.v1.json and
   jsonschema/event-envelope.v1.json - backward-compatible: add optional
   canonical scope-axis fields (`scope_id`, `scope_type`) while preserving
