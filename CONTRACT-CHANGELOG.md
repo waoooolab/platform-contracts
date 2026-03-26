@@ -5,6 +5,12 @@ Policy reference:
 
 ## Unreleased
 
+- [changed] jsonschema/command-envelope.v1.json and
+  jsonschema/event-envelope.v1.json - backward-compatible: add optional
+  canonical scope-axis fields (`scope_id`, `scope_type`) while preserving
+  legacy tenant/app/session envelope fields for compatibility rollout
+  (migration: existing producers remain valid; gateways can start projecting
+  scope fields incrementally)
 - [changed] jsonschema/command-envelope.v1.json - backward-compatible: add
   optional contract-version fields (`task_contract_version`,
   `agent_contract_version`, `event_schema_version`) so admission/freeze logic
