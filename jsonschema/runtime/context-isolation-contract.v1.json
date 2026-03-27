@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/context-isolation-contract.v1.json",
+  "title": "ContextIsolationContractV1",
+  "description": "Canonical context-isolation vocabulary and scenario mapping contract for runtime-governed orchestration.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "scenario_id",
+    "orchestration_mode",
+    "context_mode",
+    "communication_memory_plane",
+    "runtime_state_plane",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "context_isolation_contract.v1"
+    },
+    "scenario_id": {
+      "type": "string",
+      "enum": [
+        "coding_assistant",
+        "visual_generation",
+        "operations",
+        "hybrid_product"
+      ]
+    },
+    "orchestration_mode": {
+      "type": "string",
+      "enum": [
+        "single_agent",
+        "orchestrated_multi_agent",
+        "nested_worker_subagents",
+        "tool_first"
+      ]
+    },
+    "context_mode": {
+      "type": "string",
+      "enum": [
+        "isolated",
+        "shared",
+        "hybrid_scoped"
+      ]
+    },
+    "communication_memory_plane": {
+      "type": "object",
+      "required": [
+        "authority",
+        "storage_scope",
+        "retention_class"
+      ],
+      "properties": {
+        "authority": {
+          "type": "string",
+          "enum": [
+            "runtime_orchestrator",
+            "provider_native"
+          ]
+        },
+        "storage_scope": {
+          "type": "string",
+          "enum": [
+            "session",
+            "user",
+            "agent",
+            "organization"
+          ]
+        },
+        "retention_class": {
+          "type": "string",
+          "enum": [
+            "ephemeral",
+            "durable"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "runtime_state_plane": {
+      "type": "object",
+      "required": [
+        "authority",
+        "required_fields"
+      ],
+      "properties": {
+        "authority": {
+          "type": "string",
+          "const": "runtime_orchestrator"
+        },
+        "required_fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "run_id",
+              "task_id",
+              "trace_id",
+              "session_key",
+              "scope_id",
+              "scope_type"
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "session_authority_runtime_owned",
+          "context_pruning_non_durable",
+          "memory_injection_policy_explicit",
+          "communication_runtime_planes_separated",
+          "cross_scope_leakage_blocked"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

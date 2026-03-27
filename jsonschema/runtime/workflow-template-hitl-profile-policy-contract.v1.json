@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/workflow-template-hitl-profile-policy-contract.v1.json",
+  "title": "WorkflowTemplateHitlProfilePolicyContractV1",
+  "description": "Canonical Product Builder template-level HITL and profile/policy projection contract for run-submit envelope projection.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "template_type",
+    "hitl",
+    "profile_projection",
+    "precedence_order",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "workflow_template_hitl_profile_policy_contract.v1"
+    },
+    "template_type": {
+      "type": "string",
+      "enum": [
+        "development_pipeline",
+        "visual_pipeline",
+        "project_ops_pipeline"
+      ]
+    },
+    "hitl": {
+      "type": "object",
+      "required": [
+        "gate_mode",
+        "gate_scope",
+        "notify_points"
+      ],
+      "properties": {
+        "gate_mode": {
+          "type": "string",
+          "enum": [
+            "none",
+            "approval_required",
+            "review_required",
+            "notify_only"
+          ]
+        },
+        "gate_scope": {
+          "type": "string",
+          "enum": [
+            "workflow",
+            "phase",
+            "step"
+          ]
+        },
+        "notify_points": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "run_submitted",
+              "gate_pending",
+              "approval_recorded",
+              "run_resumed"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "profile_projection": {
+      "type": "object",
+      "required": [
+        "scenario_profile"
+      ],
+      "properties": {
+        "scenario_profile": {
+          "type": "string",
+          "enum": [
+            "dev_factory",
+            "visual_factory",
+            "project_ops"
+          ]
+        },
+        "execution_profile": {
+          "type": "object"
+        },
+        "dispatch_policy": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "precedence_order": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "const": "explicit_payload"
+        },
+        {
+          "const": "template_projection"
+        },
+        {
+          "const": "scenario_defaults"
+        },
+        {
+          "const": "runtime_defaults"
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "hitl_gate_machine_checkable",
+          "projection_precedence_deterministic",
+          "scenario_profile_fallback_declared",
+          "explicit_payload_override_safe"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 3
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "template_type": {
+            "const": "visual_pipeline"
+          }
+        },
+        "required": [
+          "template_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "profile_projection": {
+            "properties": {
+              "scenario_profile": {
+                "const": "visual_factory"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "template_type": {
+            "const": "development_pipeline"
+          }
+        },
+        "required": [
+          "template_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "profile_projection": {
+            "properties": {
+              "scenario_profile": {
+                "const": "dev_factory"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

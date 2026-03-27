@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/path-handoff-contract.v1.json",
+  "title": "PathHandoffContractV1",
+  "description": "Canonical contract for direct <-> orchestrated path handoff metadata and lifecycle expectations.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "path_modes",
+    "handoff_directions",
+    "required_identity_fields",
+    "conflict_resolution_modes",
+    "default_conflict_resolution",
+    "status_projection",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "path_handoff_contract.v1"
+    },
+    "path_modes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "orchestrated",
+          "local_direct"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 2
+    },
+    "handoff_directions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "direct_to_orchestrated",
+          "orchestrated_to_direct"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 2
+    },
+    "required_identity_fields": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "handoff_id",
+          "source_path",
+          "target_path",
+          "source_session_key",
+          "trace_id",
+          "correlation_id",
+          "idempotency_key",
+          "source_task_id",
+          "target_task_id",
+          "source_run_id",
+          "target_run_id"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 7
+    },
+    "identity_mapping_policy": {
+      "type": "object",
+      "required": [
+        "session_key",
+        "task_id",
+        "run_id"
+      ],
+      "properties": {
+        "session_key": {
+          "type": "string",
+          "enum": [
+            "preserve",
+            "derive_target",
+            "explicit_override"
+          ]
+        },
+        "task_id": {
+          "type": "string",
+          "enum": [
+            "preserve",
+            "new_with_parent_link",
+            "explicit_override"
+          ]
+        },
+        "run_id": {
+          "type": "string",
+          "enum": [
+            "preserve",
+            "new_with_handoff_link",
+            "explicit_override"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "conflict_resolution_modes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "deny_on_open_task",
+          "queue_as_new_child",
+          "manual_approval_required"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "default_conflict_resolution": {
+      "type": "string",
+      "enum": [
+        "deny_on_open_task",
+        "queue_as_new_child",
+        "manual_approval_required"
+      ]
+    },
+    "status_projection": {
+      "type": "object",
+      "required": [
+        "phases"
+      ],
+      "properties": {
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "validated",
+              "mapped",
+              "imported",
+              "attached",
+              "completed",
+              "rejected"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 5
+        }
+      },
+      "additionalProperties": false
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "identity_mapping_deterministic",
+          "idempotency_preserved_across_paths",
+          "open_task_conflict_blocked_or_queued",
+          "audit_chain_not_broken",
+          "trace_lineage_preserved"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 5
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "conflict_resolution_modes": {
+            "contains": {
+              "const": "deny_on_open_task"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "default_conflict_resolution": {
+            "enum": [
+              "deny_on_open_task",
+              "queue_as_new_child",
+              "manual_approval_required"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

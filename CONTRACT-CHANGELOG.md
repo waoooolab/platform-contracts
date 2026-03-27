@@ -5,6 +5,50 @@ Policy reference:
 
 ## Unreleased
 
+- [added] jsonschema/runtime/workflow-template-capability-binding-contract.v1.json -
+  backward-compatible: add canonical Product Builder template-package and
+  capability-binding contract (`template_package`, `capability_bindings`,
+  `resolution_policy`) for S6-c/S6-f reusable assembly baseline (migration:
+  additive new schema; producers and consumers can adopt incrementally)
+- [added] jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json -
+  backward-compatible: add canonical Product Builder template-level HITL gate
+  and profile/policy projection contract (`template_type`, `hitl`,
+  `profile_projection`, deterministic `precedence_order`) for S6-b/S6-d
+  submit-envelope projection baseline (migration: additive new schema;
+  producers and consumers can adopt incrementally)
+- [added] jsonschema/runtime/workflow-template-compile-contract.v1.json -
+  backward-compatible: add canonical Product Builder template compile contract
+  (`phase/step` DAG -> workflow task graph) with deterministic task-id strategy,
+  dependency policy vocabulary, and machine-checkable compile acceptance tokens
+  for S6/S6-a kickoff baseline (migration: additive new schema; producers and
+  consumers can adopt incrementally)
+- [added] jsonschema/runtime/scenario-profile-contract.v1.json -
+  backward-compatible: add canonical scenario-profile contract
+  (`dev_factory`, `visual_factory`, `project_ops`) with machine-checkable
+  objective/artifact mapping, completion-criteria vocabulary, risk-level field,
+  orchestration-depth selection, and required policy binding surface (migration:
+  additive new schema; producers/consumers can adopt incrementally)
+- [added] jsonschema/runtime/path-handoff-contract.v1.json -
+  backward-compatible: add canonical dual-path handoff contract for
+  `local_direct <-> orchestrated` transition metadata (`handoff_id`,
+  source/target identity fields), deterministic identity mapping policy,
+  conflict-resolution modes, and status-phase projection baseline
+  (migration: additive new schema; producers/consumers can adopt
+  incrementally)
+- [changed] jsonschema/command-envelope.v1.json and
+  jsonschema/event-envelope.v1.json - backward-compatible: add optional
+  split-plane contract blocks (`communication_memory_trace`,
+  `runtime_state_assembly`) with machine-checkable pairing (`both-or-none`),
+  deterministic recovery assembly order, pointer validity, fallback strategy,
+  and role/assistant identity fields for S3-b/S3-d baseline closure (migration:
+  existing producers remain valid; new split fields are optional and can be
+  rolled out incrementally)
+- [added] jsonschema/runtime/context-isolation-contract.v1.json -
+  backward-compatible: add canonical context-isolation vocabulary contract
+  (`scenario_id`, `orchestration_mode`, `context_mode`) with explicit
+  communication-memory/runtime-state plane boundaries and acceptance criteria
+  for scenario-driven isolation selection (migration: additive new schema;
+  consumers can adopt incrementally)
 - [changed] jsonschema/runtime/orchestration-hints.v1.json,
   jsonschema/runtime/runtime-run-event.v1.json, and
   jsonschema/runtime/runtime-route-event.v1.json - backward-compatible: add

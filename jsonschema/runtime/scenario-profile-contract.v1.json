@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/scenario-profile-contract.v1.json",
+  "title": "ScenarioProfileContractV1",
+  "description": "Canonical scenario profile contract for development, visual production, and project-ops workload governance.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "profile_id",
+    "objective_type",
+    "artifact_type",
+    "completion_criteria",
+    "risk_level",
+    "orchestration_depth",
+    "required_policy_bindings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "scenario_profile_contract.v1"
+    },
+    "profile_id": {
+      "type": "string",
+      "enum": [
+        "dev_factory",
+        "visual_factory",
+        "project_ops"
+      ]
+    },
+    "objective_type": {
+      "type": "string",
+      "enum": [
+        "development",
+        "visual_generation",
+        "project_operations"
+      ]
+    },
+    "artifact_type": {
+      "type": "string",
+      "enum": [
+        "code_bundle",
+        "media_bundle",
+        "ops_bundle"
+      ]
+    },
+    "completion_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "tests_green",
+          "artifact_rendered",
+          "policy_gate_passed",
+          "review_completed",
+          "handoff_ready"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 2
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "orchestration_depth": {
+      "type": "string",
+      "enum": [
+        "single_agent",
+        "orchestrated_multi_agent",
+        "nested_multi_agent"
+      ]
+    },
+    "required_policy_bindings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "dispatch_policy",
+          "admission_policy",
+          "resource_policy",
+          "audit_policy"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 2
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "profile_id": {
+            "const": "dev_factory"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "objective_type": {
+            "const": "development"
+          },
+          "artifact_type": {
+            "const": "code_bundle"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profile_id": {
+            "const": "visual_factory"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "objective_type": {
+            "const": "visual_generation"
+          },
+          "artifact_type": {
+            "const": "media_bundle"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profile_id": {
+            "const": "project_ops"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "objective_type": {
+            "const": "project_operations"
+          },
+          "artifact_type": {
+            "const": "ops_bundle"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}
