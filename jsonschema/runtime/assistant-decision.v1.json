@@ -14,7 +14,9 @@
     "scenario_profile",
     "chain_profile",
     "agent_dispatch_policy",
-    "task_governance_policy"
+    "task_governance_policy",
+    "layered_authority_contract",
+    "path_promotion_decision_matrix"
   ],
   "properties": {
     "decision_version": {
@@ -196,6 +198,137 @@
             "none",
             "required"
           ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "layered_authority_contract": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "upstream_decision_plane",
+        "upstream_decision_role",
+        "downstream_execution_governance_owner",
+        "runtime_lifecycle_truth_owner",
+        "peer_parallel_scheduler_allowed",
+        "runtime_may_request_step_planning"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "orchestration_layered_authority.v1"
+        },
+        "upstream_decision_plane": {
+          "type": "string",
+          "enum": [
+            "langgraph",
+            "langchain",
+            "langgraph_or_langchain"
+          ]
+        },
+        "upstream_decision_role": {
+          "type": "string",
+          "const": "decision_planning"
+        },
+        "downstream_execution_governance_owner": {
+          "type": "string",
+          "const": "runtime_execution"
+        },
+        "runtime_lifecycle_truth_owner": {
+          "type": "boolean",
+          "const": true
+        },
+        "peer_parallel_scheduler_allowed": {
+          "type": "boolean",
+          "const": false
+        },
+        "runtime_may_request_step_planning": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "path_promotion_decision_matrix": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "promotion_direction",
+        "promotion_target_path",
+        "deterministic_rule_order",
+        "trigger_snapshot",
+        "promotion_required",
+        "promotion_reason_codes"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "assistant_path_promotion_matrix.v1"
+        },
+        "promotion_direction": {
+          "type": "string",
+          "const": "assistant_direct_to_runtime_governed"
+        },
+        "promotion_target_path": {
+          "type": "string",
+          "const": "runtime_governed"
+        },
+        "deterministic_rule_order": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "hitl_gate",
+              "reliability_guard",
+              "policy_gate",
+              "audit_gate"
+            ]
+          }
+        },
+        "trigger_snapshot": {
+          "type": "object",
+          "required": [
+            "hitl_required",
+            "reliability_risk_level",
+            "policy_gate_required",
+            "audit_trail_required"
+          ],
+          "properties": {
+            "hitl_required": {
+              "type": "boolean"
+            },
+            "reliability_risk_level": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ]
+            },
+            "policy_gate_required": {
+              "type": "boolean"
+            },
+            "audit_trail_required": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "promotion_required": {
+          "type": "boolean"
+        },
+        "promotion_reason_codes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$",
+            "minLength": 1
+          }
         }
       },
       "additionalProperties": false
