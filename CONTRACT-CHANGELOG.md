@@ -244,5 +244,11 @@ Policy reference:
   acceptance gates), and attach/import lifecycle
   (`source_registration_state`, `identity_mapping`,
   `import_lifecycle_action`) (migration: n/a)
+- [added] jsonschema/runtime/observability-early-warning-contract.v1.json -
+  backward-compatible: warning-first observability contract for
+  chain-specific signals (`queue_depth`, `worker_latency`,
+  `resource_utilization`) with threshold/action mapping fields
+  (`warn_threshold`, `critical_threshold`, `action_on_warn`,
+  `action_on_critical`) (migration: n/a)
 
 ## History

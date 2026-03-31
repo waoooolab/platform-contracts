@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/observability-early-warning-contract.v1.json",
+  "title": "ObservabilityEarlyWarningContractV1",
+  "description": "Warning-first observability contract for chain-specific runtime signals, thresholds, and deterministic actions.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "chain_types",
+    "signal_classes",
+    "chain_policies"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "observability_early_warning_contract.v1"
+    },
+    "chain_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "dispatch",
+          "reliability",
+          "cost"
+        ]
+      },
+      "minItems": 3,
+      "uniqueItems": true
+    },
+    "signal_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "queue_depth",
+          "worker_latency",
+          "resource_utilization"
+        ]
+      },
+      "minItems": 3,
+      "uniqueItems": true
+    },
+    "chain_policies": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "#/$defs/chain_policy"
+      }
+    }
+  },
+  "$defs": {
+    "signal_policy": {
+      "type": "object",
+      "required": [
+        "signal_class",
+        "warn_threshold",
+        "critical_threshold",
+        "action_on_warn",
+        "action_on_critical"
+      ],
+      "properties": {
+        "signal_class": {
+          "type": "string",
+          "enum": [
+            "queue_depth",
+            "worker_latency",
+            "resource_utilization"
+          ]
+        },
+        "warn_threshold": {
+          "type": "number",
+          "minimum": 0
+        },
+        "critical_threshold": {
+          "type": "number",
+          "minimum": 0
+        },
+        "action_on_warn": {
+          "type": "string",
+          "enum": [
+            "defer_dispatch",
+            "scale_worker_pool",
+            "rebalance_queue",
+            "notify_operator",
+            "shift_to_cost_optimized_path"
+          ]
+        },
+        "action_on_critical": {
+          "type": "string",
+          "enum": [
+            "pause_dispatch",
+            "trigger_reliability_recovery",
+            "enforce_cost_cap",
+            "escalate_oncall"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "chain_policy": {
+      "type": "object",
+      "required": [
+        "chain_type",
+        "signals"
+      ],
+      "properties": {
+        "chain_type": {
+          "type": "string",
+          "enum": [
+            "dispatch",
+            "reliability",
+            "cost"
+          ]
+        },
+        "signals": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "$ref": "#/$defs/signal_policy"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "signal_class"
+            ],
+            "properties": {
+              "signal_class": {
+                "const": "queue_depth"
+              }
+            }
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "signal_class"
+            ],
+            "properties": {
+              "signal_class": {
+                "const": "worker_latency"
+              }
+            }
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "signal_class"
+            ],
+            "properties": {
+              "signal_class": {
+                "const": "resource_utilization"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
