@@ -33,6 +33,7 @@ Runtime contracts (P6 routing and placement):
 - `jsonschema/runtime/path-handoff-contract.v1.json` (canonical direct<->orchestrated handoff contract: identity mapping, conflict resolution, and status projection baseline)
 - `jsonschema/runtime/scenario-profile-contract.v1.json` (canonical scenario profile contract for `dev_factory`/`visual_factory`/`project_ops` objective, artifact, completion, risk, and orchestration-depth governance)
 - `jsonschema/runtime/workflow-template-compile-contract.v1.json` (canonical Product Builder template compile contract for `phase/step` DAG -> workflow task graph with deterministic task-id/dependency policy)
+- `jsonschema/runtime/execution-plan-contract.v1.json` (canonical workflow-template -> runtime execution DAG plan output contract with `nodes/edges/entry_point/metadata`)
 - `jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json` (canonical Product Builder template-level HITL gate + profile/policy projection contract with deterministic precedence order for submit-envelope projection)
 - `jsonschema/runtime/workflow-template-capability-binding-contract.v1.json` (canonical Product Builder template package + capability binding contract with lifecycle metadata and reusable binding resolution policy)
 - `jsonschema/runtime/executor-profile-catalog.v1.json` (runtime-supported executor family/engine/adapter catalog output)

@@ -5,6 +5,11 @@ Policy reference:
 
 ## Unreleased
 
+- [added] jsonschema/runtime/execution-plan-contract.v1.json -
+  backward-compatible: add canonical workflow-template execution DAG contract
+  (`nodes`, `edges`, `entry_point`, `metadata`) for machine-checkable
+  template->plan compilation outputs in langgraph-core runtime planning
+  (migration: additive new schema; producers/consumers can adopt incrementally)
 - [changed] jsonschema/runtime/assistant-decision.v1.json -
   backward-compatible: freeze machine-checkable layered authority and
   deterministic path-promotion contract for assistant orchestration
