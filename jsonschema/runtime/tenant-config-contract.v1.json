@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/tenant-config-contract.v1.json",
+  "title": "TenantConfigContractV1",
+  "description": "Tenant-scoped config payload pushed from upper-layer products into waoooolab kernel services.",
+  "type": "object",
+  "required": [
+    "tenant_id",
+    "chain_policy",
+    "capability_permissions",
+    "resource_quotas",
+    "metadata"
+  ],
+  "properties": {
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chain_policy": {
+      "type": "object",
+      "properties": {
+        "default_inference_target": {
+          "type": "string",
+          "enum": [
+            "hosted_api",
+            "local_endpoint"
+          ]
+        },
+        "enforced_inference_target": {
+          "type": "string",
+          "enum": [
+            "hosted_api",
+            "local_endpoint"
+          ]
+        },
+        "preferred_models": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "capability_permissions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "resource_quotas": {
+      "type": "object",
+      "properties": {
+        "max_parallel_runs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_tokens_per_completion": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

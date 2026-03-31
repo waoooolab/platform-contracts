@@ -5,6 +5,12 @@ Policy reference:
 
 ## Unreleased
 
+- [added] jsonschema/runtime/tenant-config-contract.v1.json -
+  backward-compatible: add canonical tenant runtime-config delivery contract
+  (`tenant_id`, `chain_policy`, `capability_permissions`,
+  `resource_quotas`, `metadata`) for upper-layer product config push into
+  control/runtime/ai kernel services (migration: additive new schema;
+  producers/consumers can adopt incrementally)
 - [added] jsonschema/runtime/execution-plan-contract.v1.json -
   backward-compatible: add canonical workflow-template execution DAG contract
   (`nodes`, `edges`, `entry_point`, `metadata`) for machine-checkable
