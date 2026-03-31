@@ -237,6 +237,13 @@ Policy reference:
   backward-compatible: enforce snake_case naming pattern for
   `payload.failure.code` (migration: reason/code fields must match
   `^[a-z0-9_]+$`)
+- [added] jsonschema/runtime/brownfield-takeover-contract.v1.json -
+  backward-compatible: brownfield takeover normalization contract covering
+  drift detection (`missing_configs`, `baseline_diff`, `remediation_backlog`),
+  workload profile matrix (`dev_profile`, `visual_profile` with checklist and
+  acceptance gates), and attach/import lifecycle
+  (`source_registration_state`, `identity_mapping`,
+  `import_lifecycle_action`) (migration: n/a)
 - [added] jsonschema/runtime/observability-early-warning-contract.v1.json -
   backward-compatible: warning-first observability contract for
   chain-specific signals (`queue_depth`, `worker_latency`,
