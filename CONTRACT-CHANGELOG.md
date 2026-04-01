@@ -5,6 +5,13 @@ Policy reference:
 
 ## Unreleased
 
+- [added] jsonschema/runtime/runtime-run-lifecycle-replay.v1.json -
+  backward-compatible: add canonical run-scoped lifecycle replay response
+  contract (`schema_version`, `run_id`, `items`, `source`,
+  `lifecycle_projection`, `dlq_projection`, optional `consumer_cursor`) to
+  formalize runtime truth-loop replay reads and prevent generic event-page
+  schema drift (migration: additive new schema; runtime-gateway/control
+  consumers can adopt incrementally)
 - [added] jsonschema/runtime/tenant-config-contract.v1.json -
   backward-compatible: add canonical tenant runtime-config delivery contract
   (`tenant_id`, `chain_policy`, `capability_permissions`,
