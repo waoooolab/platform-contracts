@@ -1,0 +1,72 @@
+{
+  "schema_version": "runtime.executor-profile-catalog.data.v1",
+  "items": [
+    {
+      "family": "acp",
+      "engines": [
+        "codex",
+        "claude_code",
+        "gemini_cli",
+        "opencode",
+        "droid"
+      ],
+      "adapters": [
+        "orchestrator",
+        "ccb"
+      ],
+      "access_modes": [
+        "direct",
+        "api"
+      ],
+      "window_modes": [
+        "inline",
+        "terminal_mux"
+      ]
+    },
+    {
+      "family": "native_agent",
+      "engines": [
+        "pi_ai"
+      ],
+      "adapters": [
+        "native"
+      ],
+      "access_modes": [
+        "direct"
+      ],
+      "window_modes": [
+        "inline"
+      ]
+    },
+    {
+      "family": "workflow_runtime",
+      "engines": [
+        "langgraph"
+      ],
+      "adapters": [
+        "runtime_api"
+      ],
+      "access_modes": [
+        "api"
+      ],
+      "window_modes": [
+        "inline"
+      ]
+    },
+    {
+      "family": "compute_runtime",
+      "engines": [
+        "device_hub"
+      ],
+      "adapters": [
+        "runtime_api"
+      ],
+      "access_modes": [
+        "api"
+      ],
+      "window_modes": [
+        "inline"
+      ]
+    }
+  ]
+}

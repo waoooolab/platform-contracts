@@ -5,6 +5,13 @@ Policy reference:
 
 ## Unreleased
 
+- [added] catalog/runtime/executor-profile-catalog.data.v1.json -
+  backward-compatible: add canonical executor-profile data catalog
+  (`family`, `engines`, `adapters`, `access_modes`, `window_modes`) so
+  runtime-gateway and runtime-execution can load axis mappings from one
+  shared source while keeping existing profile endpoints and validation
+  behavior unchanged (migration: consumers may continue using built-in
+  defaults and progressively switch to catalog-driven loading)
 - [added] jsonschema/runtime/runtime-run-lifecycle-replay.v1.json -
   backward-compatible: add canonical run-scoped lifecycle replay response
   contract (`schema_version`, `run_id`, `items`, `source`,
