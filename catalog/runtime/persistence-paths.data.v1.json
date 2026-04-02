@@ -1,0 +1,66 @@
+{
+  "schema_version": "runtime.persistence-paths.data.v1",
+  "services": {
+    "runtime-execution": {
+      "persist_root_env": "OWA_PERSIST_ROOT",
+      "paths": {
+        "checkpoint_db": {
+          "explicit_env": "RUNTIME_EXECUTION_CHECKPOINT_DB_PATH",
+          "relative_path": "runtime-execution/runtime-checkpoints.sqlite"
+        },
+        "queue_db": {
+          "explicit_env": "RUNTIME_EXECUTION_QUEUE_DB_PATH",
+          "relative_path": "runtime-execution/runtime-checkpoints.sqlite"
+        }
+      }
+    },
+    "runtime-gateway": {
+      "persist_root_env": "OWA_PERSIST_ROOT",
+      "paths": {
+        "event_db": {
+          "explicit_env": "RUNTIME_GATEWAY_EVENT_DB_PATH",
+          "relative_path": "runtime-gateway/runtime-events.sqlite"
+        },
+        "audit_db": {
+          "explicit_env": "RUNTIME_GATEWAY_AUDIT_DB_PATH",
+          "relative_path": "runtime-gateway/runtime-audit.sqlite"
+        }
+      }
+    },
+    "control-gateway": {
+      "persist_root_env": "OWA_PERSIST_ROOT",
+      "paths": {
+        "objective_index_db": {
+          "explicit_env": "CONTROL_GATEWAY_OBJECTIVE_INDEX_DB_PATH",
+          "relative_path": "control-gateway/control-objective-index.sqlite"
+        },
+        "provider_policy_ledger_db": {
+          "explicit_env": "CONTROL_GATEWAY_PROVIDER_POLICY_LEDGER_DB_PATH",
+          "relative_path": "control-gateway/provider-policy-ledger.sqlite"
+        },
+        "tenant_config_db": {
+          "explicit_env": "CONTROL_GATEWAY_TENANT_CONFIG_DB_PATH",
+          "relative_path": "control-gateway/tenant-config-store.sqlite"
+        }
+      }
+    },
+    "device-hub": {
+      "persist_root_env": "OWA_PERSIST_ROOT",
+      "paths": {
+        "device_state_db": {
+          "explicit_env": "DEVICE_HUB_STATE_DB_PATH",
+          "relative_path": "device-hub/device-state.sqlite"
+        }
+      }
+    },
+    "ai-gateway": {
+      "persist_root_env": "OWA_PERSIST_ROOT",
+      "paths": {
+        "circuit_db": {
+          "explicit_env": "AI_GATEWAY_CIRCUIT_DB_PATH",
+          "relative_path": "ai-gateway/ai-circuits.sqlite"
+        }
+      }
+    }
+  }
+}

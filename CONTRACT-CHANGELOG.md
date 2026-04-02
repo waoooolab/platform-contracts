@@ -5,6 +5,19 @@ Policy reference:
 
 ## Unreleased
 
+- [added] catalog/runtime/code-terms.data.v1.json -
+  backward-compatible: add canonical code-term normalization policy catalog
+  (`snake_case_pattern`, camel-boundary and token cleanup patterns) so
+  runtime/control/device services can align reason/failure code normalization
+  semantics via shared policy data with local fallback compatibility
+  (migration: loaders may adopt incrementally; defaults remain valid)
+- [added] catalog/runtime/persistence-paths.data.v1.json -
+  backward-compatible: add canonical persistence-path mapping catalog
+  (service-level `persist_root_env` + per-path explicit env and relative path)
+  so runtime/control/device/ai services can resolve storage paths from one
+  shared data source while preserving existing explicit-env precedence
+  behavior (migration: loaders may adopt incrementally; hardcoded defaults
+  remain fallback)
 - [added] catalog/runtime/executor-profile-catalog.data.v1.json -
   backward-compatible: add canonical executor-profile data catalog
   (`family`, `engines`, `adapters`, `access_modes`, `window_modes`) so

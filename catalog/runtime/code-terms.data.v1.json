@@ -1,0 +1,9 @@
+{
+  "schema_version": "runtime.code-terms.data.v1",
+  "policy": {
+    "snake_case_pattern": "^[a-z0-9_]+$",
+    "camel_boundary_pattern": "([a-z0-9])([A-Z])",
+    "non_alnum_pattern": "[^A-Za-z0-9]+",
+    "multi_underscore_pattern": "_+"
+  }
+}
