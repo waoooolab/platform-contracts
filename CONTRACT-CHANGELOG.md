@@ -46,13 +46,17 @@ Policy reference:
 - [changed] jsonschema/runtime/assistant-decision.v1.json -
   backward-compatible: freeze machine-checkable layered authority and
   deterministic path-promotion contract for assistant orchestration
-  (`layered_authority_contract`, `path_promotion_decision_matrix`) so
-  LangGraph/LangChain remains upstream decision plane while
-  `runtime_execution` is downstream execution-governance truth owner
-  (non-peer-parallel), with explicit direct->runtime-governed escalation
-  trigger snapshot fields (`hitl_required`, `reliability_risk_level`,
-  `policy_gate_required`, `audit_trail_required`) and reason-code surface
-  (migration: producer payloads should project the two new required blocks)
+  (`layered_authority_contract`, `path_promotion_decision_matrix`) with
+  neutral upstream plane vocabulary (`agent_orchestrator` /
+  `agent_framework` / `external_orchestrator`) and neutral dispatch target
+  vocabulary (`agent_orchestrator`/`runtime_execution`/`mixed`), while
+  preserving `runtime_execution` as downstream execution-governance truth
+  owner (non-peer-parallel); add optional `harness_policy` projection
+  (`requirements_requested`, `resolution_status`,
+  `required_components`, `resolved_bindings`, optional `resolution_error`)
+  so assistant decision payloads can expose harness binding visibility at
+  entry boundary (migration: existing payloads remain valid; producers may
+  roll out `harness_policy` incrementally)
 - [added] jsonschema/runtime/workflow-template-capability-binding-contract.v1.json -
   backward-compatible: add canonical Product Builder template-package and
   capability-binding contract (`template_package`, `capability_bindings`,

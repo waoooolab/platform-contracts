@@ -162,7 +162,7 @@
         "target_executor": {
           "type": "string",
           "enum": [
-            "langgraph_core",
+            "agent_orchestrator",
             "runtime_execution",
             "mixed"
           ]
@@ -202,6 +202,105 @@
       },
       "additionalProperties": false
     },
+    "harness_policy": {
+      "type": "object",
+      "required": [
+        "requirements_requested",
+        "resolution_status",
+        "required_components",
+        "resolved_bindings"
+      ],
+      "properties": {
+        "requirements_requested": {
+          "type": "boolean"
+        },
+        "resolution_status": {
+          "type": "string",
+          "enum": [
+            "not_requested",
+            "resolved",
+            "invalid"
+          ]
+        },
+        "required_components": {
+          "type": "object",
+          "properties": {
+            "sub_agent_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sandbox_profile_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "memory_backend_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "resolved_bindings": {
+          "type": "object",
+          "properties": {
+            "sub_agent_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sub_agent_name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sub_agent_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sub_agent_status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sandbox_profile_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sandbox_profile_name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sandbox_profile_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sandbox_profile_status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "memory_backend_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "memory_backend_name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "memory_backend_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "memory_backend_status": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "resolution_error": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
     "layered_authority_contract": {
       "type": "object",
       "required": [
@@ -221,9 +320,9 @@
         "upstream_decision_plane": {
           "type": "string",
           "enum": [
-            "langgraph",
-            "langchain",
-            "langgraph_or_langchain"
+            "agent_orchestrator",
+            "agent_framework",
+            "external_orchestrator"
           ]
         },
         "upstream_decision_role": {
