@@ -5,6 +5,13 @@ Policy reference:
 
 ## Unreleased
 
+- [changed] jsonschema/runtime/runtime-route-event.v1.json and
+  jsonschema/runtime/runtime-run-event.v1.json - backward-compatible: debrand
+  runtime route target enum values by replacing legacy `langgraph-core` with
+  canonical `agent-orchestrator` while preserving existing route semantics and
+  adapter compatibility (migration: downstream producers/consumers should emit
+  and parse `agent-orchestrator`; legacy aliases remain compatible at control
+  ingress during transition)
 - [added] jsonschema/runtime/runtime-route-event.v1.json and
   jsonschema/runtime/runtime-run-event.v1.json - backward-compatible: add
   `agent-orchestrator` to `route_target` enum in runtime route/run event
