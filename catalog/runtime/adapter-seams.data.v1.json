@@ -1,35 +1,7 @@
 {
   "schema_version": "runtime.adapter-seams.data.v1",
-  "description": "Canonical registry of cross-service adapter seams in the waoooolab runtime kernel. Each seam documents the Protocol, env chain, and contract-test coverage.",
+  "description": "Canonical registry of adapter seams required by OWA-20260413-608 Team-3 seam closure.",
   "seams": [
-    {
-      "id": "identity",
-      "service": "runtime-gateway",
-      "module": "runtime_gateway.identity_adapter",
-      "protocol": "IdentityAdapterBackend",
-      "backends": {
-        "local": {
-          "description": "Local JWT signing with RSA key pair",
-          "default": true
-        },
-        "keycloak": {
-          "description": "Keycloak OIDC token exchange",
-          "ready": false
-        }
-      },
-      "env_chain": {
-        "backend": {
-          "newest": "RUNTIME_GATEWAY_IDENTITY_ADAPTER_BACKEND",
-          "legacy": "WAOOOOLAB_RUNTIME_GATEWAY_IDENTITY_ADAPTER_BACKEND"
-        }
-      },
-      "tests": {
-        "file": "tests/test_identity_adapter.py",
-        "status": "covered",
-        "count": 8
-      },
-      "adr_ref": "ADR-0015-adapter-first-execution-strategy"
-    },
     {
       "id": "event_transport",
       "service": "runtime-gateway",
@@ -45,23 +17,38 @@
       "env_chain": {
         "adapter": {
           "newest": "RUNTIME_GATEWAY_EVENT_TRANSPORT_ADAPTER",
-          "legacy": ["WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_ADAPTER", "RUNTIME_GATEWAY_JETSTREAM_ADAPTER"]
+          "legacy": [
+            "WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_ADAPTER",
+            "RUNTIME_GATEWAY_JETSTREAM_ADAPTER"
+          ]
         },
         "bridge_url": {
           "newest": "RUNTIME_GATEWAY_EVENT_TRANSPORT_BRIDGE_URL",
-          "legacy": ["WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_URL", "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_URL"]
+          "legacy": [
+            "WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_URL",
+            "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_URL"
+          ]
         },
         "timeout_ms": {
           "newest": "RUNTIME_GATEWAY_EVENT_TRANSPORT_BRIDGE_TIMEOUT_MS",
-          "legacy": ["WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_TIMEOUT_MS", "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_TIMEOUT_MS"]
+          "legacy": [
+            "WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_TIMEOUT_MS",
+            "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_TIMEOUT_MS"
+          ]
         },
         "required": {
           "newest": "RUNTIME_GATEWAY_EVENT_TRANSPORT_BRIDGE_REQUIRED",
-          "legacy": ["WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_REQUIRED", "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_REQUIRED"]
+          "legacy": [
+            "WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_REQUIRED",
+            "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_REQUIRED"
+          ]
         },
         "bearer_token": {
           "newest": "RUNTIME_GATEWAY_EVENT_TRANSPORT_BRIDGE_BEARER_TOKEN",
-          "legacy": ["WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_BEARER_TOKEN", "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_BEARER_TOKEN"]
+          "legacy": [
+            "WAOOOOLAB_RUNTIME_GATEWAY_JETSTREAM_BRIDGE_BEARER_TOKEN",
+            "RUNTIME_GATEWAY_JETSTREAM_BRIDGE_BEARER_TOKEN"
+          ]
         }
       },
       "tests": {
@@ -104,69 +91,6 @@
         "file": "tests/test_runtime_identity_adapter.py",
         "status": "covered",
         "count": 17
-      },
-      "adr_ref": "ADR-0015-adapter-first-execution-strategy"
-    },
-    {
-      "id": "execution",
-      "service": "runtime-execution",
-      "module": "runtime_execution.service_api.execution_adapters",
-      "protocol": "ExecutionAdapter",
-      "backends": {
-        "control": {
-          "description": "Route via control-gateway orchestrator decision",
-          "default": true
-        },
-        "compute": {
-          "description": "Route to compute device via device-hub placement",
-          "ready": true
-        }
-      },
-      "env_chain": "runtime_execution reads execution_profile from run record; no standalone env var",
-      "tests": {
-        "file": "tests/test_execution_adapters.py",
-        "status": "covered",
-        "count": 16
-      },
-      "adr_ref": "ADR-0015-adapter-first-execution-strategy"
-    },
-    {
-      "id": "scheduler_backend",
-      "service": "runtime-execution",
-      "module": "runtime_execution.scheduler_backend_adapter",
-      "protocol": "SchedulerBackendAdapter",
-      "backends": {
-        "http": {
-          "description": "HTTP bridge to scheduler backend service",
-          "default": true
-        }
-      },
-      "env_chain": {
-        "adapter": {
-          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_ADAPTER",
-          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_ADAPTER"
-        },
-        "bridge_url": {
-          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_URL",
-          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_URL"
-        },
-        "timeout_ms": {
-          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_TIMEOUT_MS",
-          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_TIMEOUT_MS"
-        },
-        "required": {
-          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_REQUIRED",
-          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_REQUIRED"
-        },
-        "bearer_token": {
-          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_BEARER_TOKEN",
-          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_BEARER_TOKEN"
-        }
-      },
-      "tests": {
-        "file": "tests/test_scheduler_backend_adapter.py",
-        "status": "covered",
-        "count": 20
       },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
@@ -251,45 +175,50 @@
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
     {
-      "id": "tenant_config",
+      "id": "scheduler_backend",
       "service": "runtime-execution",
-      "module": "runtime_execution.tenant_config_adapter",
-      "protocol": "TenantConfigAdapterBackend",
+      "module": "runtime_execution.scheduler_backend_adapter",
+      "protocol": "SchedulerBackendAdapter",
       "backends": {
-        "control_gateway": {
-          "description": "HTTP to control-gateway /v1/config/{tenant_id}",
+        "http": {
+          "description": "HTTP bridge to scheduler backend service",
           "default": true
         }
       },
       "env_chain": {
-        "base_url": {
-          "newest": "RUNTIME_EXECUTION_CONTROL_GATEWAY_BASE_URL",
-          "legacy": "CONTROL_GATEWAY_BASE_URL"
+        "adapter": {
+          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_ADAPTER",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_ADAPTER"
         },
-        "token": {
-          "newest": "RUNTIME_EXECUTION_CONTROL_GATEWAY_TOKEN",
-          "legacy": "CONTROL_GATEWAY_SERVICE_TOKEN"
+        "bridge_url": {
+          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_URL",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_URL"
         },
-        "timeout_seconds": {
-          "newest": "RUNTIME_EXECUTION_CONTROL_GATEWAY_TIMEOUT_SECONDS",
-          "legacy": null
+        "timeout_ms": {
+          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_TIMEOUT_MS",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_TIMEOUT_MS"
+        },
+        "required": {
+          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_REQUIRED",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_REQUIRED"
+        },
+        "bearer_token": {
+          "newest": "RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_BEARER_TOKEN",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_SCHEDULER_BACKEND_BRIDGE_BEARER_TOKEN"
         }
       },
       "tests": {
-        "file": "tests/test_config_adapter.py",
+        "file": "tests/test_scheduler_backend_adapter.py",
         "status": "covered",
-        "count": 3
+        "count": 20
       },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     }
   ],
   "summary": {
-    "total_seams": 8,
-    "protocols_defined": 8,
-    "backends_ready": 13,
-    "backends_not_ready": 1,
-    "total_contract_tests": 109,
-    "env_chains_documented": 8,
-    "env_chains_undocumented": 0
+    "total_seams": 5,
+    "protocols_defined": 5,
+    "env_chains_documented": 5,
+    "total_contract_tests": 82
   }
 }
