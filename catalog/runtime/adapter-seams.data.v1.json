@@ -56,6 +56,23 @@
         "status": "covered",
         "count": 12
       },
+      "convergence_status": {
+        "stage_a": {
+          "status": "aligned",
+          "frameworks": ["LangGraph", "LangSmith"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.app.create_runtime_plan",
+            "langgraph_core.service.app.create_runtime_decision",
+            "langgraph_core.tracing.langsmith.LangSmithTraceHook.span"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L690",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L709",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/tracing/langsmith.py#L63"
+          ],
+          "notes": "Stage-A plan/decision surfaces emit runtime event envelopes; runtime-gateway event transport seam remains the governed outbound event bridge."
+        }
+      },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
     {
@@ -91,6 +108,22 @@
         "file": "tests/test_runtime_identity_adapter.py",
         "status": "covered",
         "count": 17
+      },
+      "convergence_status": {
+        "stage_a": {
+          "status": "partial",
+          "frameworks": ["LangGraph"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.auth.require_claims",
+            "langgraph_core.service.app._require_service_claims"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/auth.py#L93",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L60",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L694"
+          ],
+          "notes": "Stage-A defines strict bearer/audience/scope contract at agent-orchestrator boundary; runtime token issuance still converges through control-gateway runtime_identity seam."
+        }
       },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
@@ -132,6 +165,25 @@
         "status": "covered",
         "count": 20
       },
+      "convergence_status": {
+        "stage_a": {
+          "status": "aligned",
+          "frameworks": ["LangGraph", "LangChain"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.app.upsert_foundation_skills",
+            "langgraph_core.service.app.upsert_foundation_plugins",
+            "langgraph_core.kernel.foundation.MCPToolRegistry.invoke",
+            "langgraph_core.llm.ai_gateway_adapter.AIGatewayChat.as_runnable"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L907",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L941",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/foundation.py#L253",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/llm/ai_gateway_adapter.py#L154"
+          ],
+          "notes": "Stage-A capability registry and tool invocation surfaces align with runtime-execution capability backend adapter contract."
+        }
+      },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
     {
@@ -171,6 +223,23 @@
         "file": "tests/test_workflow_dispatch_backend_adapter.py",
         "status": "covered",
         "count": 13
+      },
+      "convergence_status": {
+        "stage_a": {
+          "status": "aligned",
+          "frameworks": ["LangGraph", "LangChain"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.app.dispatch_foundation_workflow_node",
+            "langgraph_core.kernel.foundation.dispatch_workflow_node",
+            "langgraph_core.agent.loop.make_agent_decision"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L794",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/foundation.py#L600",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/agent/loop.py#L65"
+          ],
+          "notes": "Stage-A workflow-plane dispatch and tool-call decision path map to runtime-execution workflow dispatch backend seam."
+        }
       },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
@@ -212,6 +281,23 @@
         "status": "covered",
         "count": 20
       },
+      "convergence_status": {
+        "stage_a": {
+          "status": "aligned",
+          "frameworks": ["LangGraph"],
+          "runtime_path_interfaces": [
+            "langgraph_core.kernel.weighted_scope_scheduler.WeightedScopeScheduler",
+            "langgraph_core.kernel.foundation.dispatch_next",
+            "langgraph_core.service.app.start_foundation_workflow_run"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/weighted_scope_scheduler.py#L8",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/foundation.py#L450",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L739"
+          ],
+          "notes": "Stage-A workload admission/dispatch ordering uses weighted scheduling and workflow lifecycle operations that converge on scheduler backend semantics."
+        }
+      },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     }
   ],
@@ -219,6 +305,15 @@
     "total_seams": 5,
     "protocols_defined": 5,
     "env_chains_documented": 5,
-    "total_contract_tests": 82
+    "total_contract_tests": 82,
+    "stage_a_convergence": {
+      "task_id": "OWA-20260414-610",
+      "stage_id": "T3-S2",
+      "source_repo": "agent-orchestrator",
+      "source_branch": "team2-stage-a",
+      "frameworks": ["LangGraph", "LangChain", "LangSmith"],
+      "aligned_seams": 4,
+      "partial_seams": 1
+    }
   }
 }
