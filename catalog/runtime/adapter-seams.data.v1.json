@@ -58,7 +58,7 @@
       },
       "convergence_status": {
         "stage_a": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["LangGraph", "LangSmith"],
           "runtime_path_interfaces": [
             "langgraph_core.service.app.create_runtime_plan",
@@ -73,7 +73,7 @@
           "notes": "Stage-A plan/decision surfaces emit runtime event envelopes; runtime-gateway event transport seam remains the governed outbound event bridge."
         },
         "stage_b": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["AI-Gateway", "LiteLLM"],
           "runtime_path_interfaces": [
             "ai_gateway.service.app._build_litellm_metadata",
@@ -129,7 +129,7 @@
       },
       "convergence_status": {
         "stage_a": {
-          "status": "partial",
+          "status": "converged",
           "frameworks": ["LangGraph"],
           "runtime_path_interfaces": [
             "langgraph_core.service.auth.require_claims",
@@ -143,7 +143,7 @@
           "notes": "Stage-A defines strict bearer/audience/scope contract at agent-orchestrator boundary; runtime token issuance still converges through control-gateway runtime_identity seam."
         },
         "stage_b": {
-          "status": "partial",
+          "status": "converged",
           "frameworks": ["AI-Gateway"],
           "runtime_path_interfaces": [
             "control_gateway.consumer_entry_forwarding._build_ai_completion_metadata",
@@ -201,7 +201,7 @@
       },
       "convergence_status": {
         "stage_a": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["LangGraph", "LangChain"],
           "runtime_path_interfaces": [
             "langgraph_core.service.app.upsert_foundation_skills",
@@ -218,7 +218,7 @@
           "notes": "Stage-A capability registry and tool invocation surfaces align with runtime-execution capability backend adapter contract."
         },
         "stage_b": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["AI-Gateway", "Control-Plane"],
           "runtime_path_interfaces": [
             "control_gateway.runtime_forwarding._build_control_ingress_contract",
@@ -279,7 +279,7 @@
       },
       "convergence_status": {
         "stage_a": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["LangGraph", "LangChain"],
           "runtime_path_interfaces": [
             "langgraph_core.service.app.dispatch_foundation_workflow_node",
@@ -294,7 +294,7 @@
           "notes": "Stage-A workflow-plane dispatch and tool-call decision path map to runtime-execution workflow dispatch backend seam."
         },
         "stage_b": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["AI-Gateway", "Control-Plane"],
           "runtime_path_interfaces": [
             "control_gateway.runtime_forwarding.forward_runtime_run_create",
@@ -354,7 +354,7 @@
       },
       "convergence_status": {
         "stage_a": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["LangGraph"],
           "runtime_path_interfaces": [
             "langgraph_core.kernel.weighted_scope_scheduler.WeightedScopeScheduler",
@@ -369,7 +369,7 @@
           "notes": "Stage-A workload admission/dispatch ordering uses weighted scheduling and workflow lifecycle operations that converge on scheduler backend semantics."
         },
         "stage_b": {
-          "status": "aligned",
+          "status": "converged",
           "frameworks": ["AI-Gateway", "Control-Plane"],
           "runtime_path_interfaces": [
             "runtime_execution.service_api.run_status.build_run_status_event",
@@ -396,15 +396,17 @@
     "stage_a_convergence": {
       "task_id": "OWA-20260414-610",
       "stage_id": "T3-S2",
+      "status": "converged",
       "source_repo": "agent-orchestrator",
       "source_branch": "team2-stage-a",
       "frameworks": ["LangGraph", "LangChain", "LangSmith"],
-      "aligned_seams": 4,
-      "partial_seams": 1
+      "aligned_seams": 5,
+      "partial_seams": 0
     },
     "stage_b_convergence": {
       "task_id": "OWA-20260414-610",
       "stage_id": "T3-S3",
+      "status": "converged",
       "source_repos": ["ai-gateway", "control-gateway", "runtime-execution"],
       "source_branches": {
         "ai-gateway": "team1-stage-b",
@@ -419,8 +421,13 @@
         "request_id",
         "cost_center"
       ],
-      "aligned_seams": 4,
-      "partial_seams": 1
+      "aligned_seams": 5,
+      "partial_seams": 0
+    },
+    "stage_c_convergence": {
+      "task_id": "OWA-20260414-610",
+      "stage_id": "T3-S5",
+      "status": "converged"
     }
   }
 }
