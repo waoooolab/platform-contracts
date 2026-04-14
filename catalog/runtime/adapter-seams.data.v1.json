@@ -56,6 +56,41 @@
         "status": "covered",
         "count": 12
       },
+      "convergence_status": {
+        "stage_a": {
+          "status": "converged",
+          "frameworks": ["LangGraph", "LangSmith"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.app.create_runtime_plan",
+            "langgraph_core.service.app.create_runtime_decision",
+            "langgraph_core.tracing.langsmith.LangSmithTraceHook.span"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L690",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L709",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/tracing/langsmith.py#L63"
+          ],
+          "notes": "Stage-A plan/decision surfaces emit runtime event envelopes; runtime-gateway event transport seam remains the governed outbound event bridge."
+        },
+        "stage_b": {
+          "status": "converged",
+          "frameworks": ["AI-Gateway", "LiteLLM"],
+          "runtime_path_interfaces": [
+            "ai_gateway.service.app._build_litellm_metadata",
+            "runtime_execution.service_api.route_events._attach_control_ingress_projection",
+            "runtime_execution.service_api.run_status.build_run_status_event"
+          ],
+          "evidence": [
+            "ai-gateway@team1-stage-b:src/ai_gateway/service/app.py#L54",
+            "ai-gateway@team1-stage-b:src/ai_gateway/service/app.py#L147",
+            "ai-gateway@team1-stage-b:src/ai_gateway/service/app.py#L239",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/control_ingress.py#L22",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/route_events.py#L225",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/run_status.py#L137"
+          ],
+          "notes": "Stage-B metadata passthrough preserves tenant/team/service/env/request_id/cost_center via control_ingress projection into runtime event envelopes transported by this seam."
+        }
+      },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
     {
@@ -91,6 +126,38 @@
         "file": "tests/test_runtime_identity_adapter.py",
         "status": "covered",
         "count": 17
+      },
+      "convergence_status": {
+        "stage_a": {
+          "status": "converged",
+          "frameworks": ["LangGraph"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.auth.require_claims",
+            "langgraph_core.service.app._require_service_claims"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/auth.py#L93",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L60",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L694"
+          ],
+          "notes": "Stage-A defines strict bearer/audience/scope contract at agent-orchestrator boundary; runtime token issuance still converges through control-gateway runtime_identity seam."
+        },
+        "stage_b": {
+          "status": "converged",
+          "frameworks": ["AI-Gateway"],
+          "runtime_path_interfaces": [
+            "control_gateway.consumer_entry_forwarding._build_ai_completion_metadata",
+            "ai_gateway.service.app._metadata_field",
+            "ai_gateway.service.app._validate_service_request_scope"
+          ],
+          "evidence": [
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:src/control_gateway/consumer_entry_forwarding.py#L45",
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:tests/test_consumer_entry_forwarding.py#L96",
+            "ai-gateway@team1-stage-b:src/ai_gateway/service/app.py#L136",
+            "ai-gateway@team1-stage-b:src/ai_gateway/service/app.py#L191"
+          ],
+          "notes": "Stage-B delegated identity claims feed metadata fields across control-plane forwarding; runtime token issuance/exchange backend remains governed by runtime_identity adapter seam."
+        }
       },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
@@ -132,6 +199,44 @@
         "status": "covered",
         "count": 20
       },
+      "convergence_status": {
+        "stage_a": {
+          "status": "converged",
+          "frameworks": ["LangGraph", "LangChain"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.app.upsert_foundation_skills",
+            "langgraph_core.service.app.upsert_foundation_plugins",
+            "langgraph_core.kernel.foundation.MCPToolRegistry.invoke",
+            "langgraph_core.llm.ai_gateway_adapter.AIGatewayChat.as_runnable"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L907",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L941",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/foundation.py#L253",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/llm/ai_gateway_adapter.py#L154"
+          ],
+          "notes": "Stage-A capability registry and tool invocation surfaces align with runtime-execution capability backend adapter contract."
+        },
+        "stage_b": {
+          "status": "converged",
+          "frameworks": ["AI-Gateway", "Control-Plane"],
+          "runtime_path_interfaces": [
+            "control_gateway.runtime_forwarding._build_control_ingress_contract",
+            "control_gateway.runtime_forwarding._inject_control_ingress_contract",
+            "runtime_execution.service_api.control_ingress.project_control_ingress",
+            "runtime_execution.service_api.route_events._attach_control_ingress_projection"
+          ],
+          "evidence": [
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:src/control_gateway/runtime_forwarding.py#L606",
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:src/control_gateway/runtime_forwarding.py#L664",
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:src/control_gateway/runtime_forwarding.py#L2021",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/control_ingress.py#L66",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/route_events.py#L231",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:tests/test_service_api_execution_context.py#L154"
+          ],
+          "notes": "Stage-B control_ingress contract now carries all six metadata fields through runtime route emission, closing capability-plane seam metadata drift."
+        }
+      },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
     {
@@ -171,6 +276,41 @@
         "file": "tests/test_workflow_dispatch_backend_adapter.py",
         "status": "covered",
         "count": 13
+      },
+      "convergence_status": {
+        "stage_a": {
+          "status": "converged",
+          "frameworks": ["LangGraph", "LangChain"],
+          "runtime_path_interfaces": [
+            "langgraph_core.service.app.dispatch_foundation_workflow_node",
+            "langgraph_core.kernel.foundation.dispatch_workflow_node",
+            "langgraph_core.agent.loop.make_agent_decision"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L794",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/foundation.py#L600",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/agent/loop.py#L65"
+          ],
+          "notes": "Stage-A workflow-plane dispatch and tool-call decision path map to runtime-execution workflow dispatch backend seam."
+        },
+        "stage_b": {
+          "status": "converged",
+          "frameworks": ["AI-Gateway", "Control-Plane"],
+          "runtime_path_interfaces": [
+            "control_gateway.runtime_forwarding.forward_runtime_run_create",
+            "control_gateway.runtime_forwarding.forward_control_objective_start",
+            "runtime_execution.service_api.control_ingress.project_control_ingress",
+            "runtime_execution.service_api.route_events._attach_control_ingress_projection"
+          ],
+          "evidence": [
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:src/control_gateway/runtime_forwarding.py#L2021",
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:src/control_gateway/runtime_forwarding.py#L2118",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/control_ingress.py#L124",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/route_events.py#L231",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:tests/test_service_api_execution_context.py#L174"
+          ],
+          "notes": "Stage-B workflow/objective forwarding injects control_ingress metadata and runtime route events persist the six-field chain for dispatch path observability."
+        }
       },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     },
@@ -212,6 +352,39 @@
         "status": "covered",
         "count": 20
       },
+      "convergence_status": {
+        "stage_a": {
+          "status": "converged",
+          "frameworks": ["LangGraph"],
+          "runtime_path_interfaces": [
+            "langgraph_core.kernel.weighted_scope_scheduler.WeightedScopeScheduler",
+            "langgraph_core.kernel.foundation.dispatch_next",
+            "langgraph_core.service.app.start_foundation_workflow_run"
+          ],
+          "evidence": [
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/weighted_scope_scheduler.py#L8",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/kernel/foundation.py#L450",
+            "agent-orchestrator@team2-stage-a:src/langgraph_core/service/app.py#L739"
+          ],
+          "notes": "Stage-A workload admission/dispatch ordering uses weighted scheduling and workflow lifecycle operations that converge on scheduler backend semantics."
+        },
+        "stage_b": {
+          "status": "converged",
+          "frameworks": ["AI-Gateway", "Control-Plane"],
+          "runtime_path_interfaces": [
+            "runtime_execution.service_api.run_status.build_run_status_event",
+            "runtime_execution.service_api.control_ingress.project_control_ingress",
+            "control_gateway.runtime_forwarding._extract_request_control_ingress_metadata"
+          ],
+          "evidence": [
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/run_status.py#L137",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:src/runtime_execution/service_api/control_ingress.py#L124",
+            "runtime-execution@feat/OWA-20260414-610-team3-stagec-convergence:tests/test_service_api_execution_context.py#L225",
+            "control-gateway@feat/OWA-20260414-610-team3-stagec-convergence:src/control_gateway/runtime_forwarding.py#L674"
+          ],
+          "notes": "Stage-B run-status events retain the control_ingress six-field metadata chain, and control-gateway extracts ingress metadata for downstream audit attribution."
+        }
+      },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     }
   ],
@@ -219,6 +392,42 @@
     "total_seams": 5,
     "protocols_defined": 5,
     "env_chains_documented": 5,
-    "total_contract_tests": 82
+    "total_contract_tests": 82,
+    "stage_a_convergence": {
+      "task_id": "OWA-20260414-610",
+      "stage_id": "T3-S2",
+      "status": "converged",
+      "source_repo": "agent-orchestrator",
+      "source_branch": "team2-stage-a",
+      "frameworks": ["LangGraph", "LangChain", "LangSmith"],
+      "aligned_seams": 5,
+      "partial_seams": 0
+    },
+    "stage_b_convergence": {
+      "task_id": "OWA-20260414-610",
+      "stage_id": "T3-S3",
+      "status": "converged",
+      "source_repos": ["ai-gateway", "control-gateway", "runtime-execution"],
+      "source_branches": {
+        "ai-gateway": "team1-stage-b",
+        "control-gateway": "feat/OWA-20260414-610-team3-stagec-convergence",
+        "runtime-execution": "feat/OWA-20260414-610-team3-stagec-convergence"
+      },
+      "metadata_chain_fields": [
+        "tenant_id",
+        "team_id",
+        "service",
+        "env",
+        "request_id",
+        "cost_center"
+      ],
+      "aligned_seams": 5,
+      "partial_seams": 0
+    },
+    "stage_c_convergence": {
+      "task_id": "OWA-20260414-610",
+      "stage_id": "T3-S5",
+      "status": "converged"
+    }
   }
 }

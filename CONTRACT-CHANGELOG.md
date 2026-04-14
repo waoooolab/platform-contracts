@@ -5,6 +5,21 @@ Policy reference:
 
 ## Unreleased
 
+- [changed] catalog/runtime/adapter-seams.data.v1.json - backward-compatible:
+  mark Stage-C adapter seam convergence for five runtime/control seams and
+  record stage_a + stage_b alignment states
+  (`event_transport`,`runtime_identity`,`capability_backend`,
+  `workflow_dispatch_backend`,`scheduler_backend`) so cross-service
+  convergence status is machine-readable for ORCH gate closure
+  (migration: additive metadata update; existing consumers remain compatible)
+- [changed] jsonschema/runtime/runtime-route-event.v1.json and
+  jsonschema/runtime/runtime-run-event.v1.json - backward-compatible: add
+  optional metadata projection fields for Stage-C control-plane convergence
+  (`upstream_origin`,`request_id`,`trace_id`,`tenant_id`) without breaking
+  existing producers/consumers
+  (migration: producers may emit incrementally; consumers must treat as
+  optional)
+
 - [changed] jsonschema/runtime/runtime-route-event.v1.json and
   jsonschema/runtime/runtime-run-event.v1.json - backward-compatible: debrand
   runtime route target enum values by replacing legacy `langgraph-core` with
