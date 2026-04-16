@@ -386,12 +386,75 @@
         }
       },
       "adr_ref": "ADR-0015-adapter-first-execution-strategy"
+    },
+    {
+      "id": "memory_backend",
+      "service": "runtime-execution",
+      "module": "runtime_execution.memory_backend_adapter",
+      "protocol": "MemoryBackendAdapter",
+      "backends": {
+        "mem0": {
+          "description": "Long-term memory backend bridge via mem0 adapter seam",
+          "default": true
+        }
+      },
+      "env_chain": {
+        "adapter": {
+          "newest": "RUNTIME_EXECUTION_MEMORY_BACKEND_ADAPTER",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_MEMORY_BACKEND_ADAPTER"
+        },
+        "base_url": {
+          "newest": "RUNTIME_EXECUTION_MEMORY_BACKEND_BASE_URL",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_MEMORY_BACKEND_BASE_URL"
+        },
+        "timeout_ms": {
+          "newest": "RUNTIME_EXECUTION_MEMORY_BACKEND_TIMEOUT_MS",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_MEMORY_BACKEND_TIMEOUT_MS"
+        },
+        "required": {
+          "newest": "RUNTIME_EXECUTION_MEMORY_BACKEND_REQUIRED",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_MEMORY_BACKEND_REQUIRED"
+        },
+        "api_key": {
+          "newest": "RUNTIME_EXECUTION_MEMORY_BACKEND_API_KEY",
+          "legacy": "WAOOOOLAB_RUNTIME_EXECUTION_MEMORY_BACKEND_API_KEY"
+        }
+      },
+      "schemas": {
+        "store_request": "jsonschema/runtime/memory-store-request.v1.json",
+        "memory_event": "jsonschema/runtime/memory-memory-event.v1.json"
+      },
+      "tests": {
+        "file": "tests/test_memory_backend_adapter.py",
+        "status": "defined",
+        "count": 0
+      },
+      "convergence_status": {
+        "stage_a": {
+          "status": "defined",
+          "frameworks": [
+            "mem0"
+          ],
+          "runtime_path_interfaces": [
+            "runtime_execution.memory_backend_adapter.MemoryBackendAdapter.store",
+            "runtime_execution.memory_backend_adapter.MemoryBackendAdapter.search",
+            "runtime_execution.memory_backend_adapter.MemoryBackendAdapter.delete"
+          ],
+          "evidence": [
+            "ADR-0015§4: mem0 via adapter seam",
+            "platform-contracts:jsonschema/runtime/memory-store-request.v1.json",
+            "platform-contracts:jsonschema/runtime/memory-memory-event.v1.json"
+          ],
+          "notes": "C3-S1 establishes mem0 seam schema contracts and catalog registration as the sixth runtime adapter seam."
+        }
+      },
+      "adr_ref": "ADR-0015-adapter-first-execution-strategy"
     }
   ],
   "summary": {
-    "total_seams": 5,
-    "protocols_defined": 5,
-    "env_chains_documented": 5,
+    "total_seams": 6,
+    "protocols_defined": 6,
+    "env_chains_documented": 6,
     "total_contract_tests": 82,
     "stage_a_convergence": {
       "task_id": "OWA-20260414-610",
