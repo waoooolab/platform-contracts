@@ -26,7 +26,8 @@
         "enum": [
           "orchestrated",
           "local_direct"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/path_modes/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 2
@@ -38,7 +39,8 @@
         "enum": [
           "direct_to_orchestrated",
           "orchestrated_to_direct"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/handoff_directions/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 2
@@ -59,7 +61,8 @@
           "target_task_id",
           "source_run_id",
           "target_run_id"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/required_identity_fields/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 7
@@ -78,7 +81,8 @@
             "preserve",
             "derive_target",
             "explicit_override"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/identity_mapping_policy/properties/session_key/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "task_id": {
           "type": "string",
@@ -86,7 +90,8 @@
             "preserve",
             "new_with_parent_link",
             "explicit_override"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/identity_mapping_policy/properties/task_id/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "run_id": {
           "type": "string",
@@ -94,7 +99,8 @@
             "preserve",
             "new_with_handoff_link",
             "explicit_override"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/identity_mapping_policy/properties/run_id/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         }
       },
       "additionalProperties": false
@@ -107,7 +113,8 @@
           "deny_on_open_task",
           "queue_as_new_child",
           "manual_approval_required"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/conflict_resolution_modes/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 1
@@ -118,7 +125,8 @@
         "deny_on_open_task",
         "queue_as_new_child",
         "manual_approval_required"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/default_conflict_resolution/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "status_projection": {
       "type": "object",
@@ -138,7 +146,8 @@
               "attached",
               "completed",
               "rejected"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/status_projection/properties/phases/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "uniqueItems": true,
           "minItems": 5
@@ -156,7 +165,8 @@
           "open_task_conflict_blocked_or_queued",
           "audit_chain_not_broken",
           "trace_lineage_preserved"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/properties/acceptance_criteria/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 5
@@ -180,7 +190,8 @@
               "deny_on_open_task",
               "queue_as_new_child",
               "manual_approval_required"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/path-handoff-contract.v1.json#/allOf[0]/then/properties/default_conflict_resolution/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           }
         }
       }

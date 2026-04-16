@@ -51,7 +51,8 @@
         "linux",
         "windows",
         "web"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/auth/device-token.v1.json#/properties/platform/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "device_fingerprint": {
       "type": "string",
@@ -63,7 +64,8 @@
         "active",
         "revoked",
         "expired"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/auth/device-token.v1.json#/properties/status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "scope": {
       "type": "array",

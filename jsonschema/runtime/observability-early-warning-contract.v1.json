@@ -23,7 +23,8 @@
           "dispatch",
           "reliability",
           "cost"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/observability-early-warning-contract.v1.json#/properties/chain_types/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "minItems": 3,
       "uniqueItems": true
@@ -36,7 +37,8 @@
           "queue_depth",
           "worker_latency",
           "resource_utilization"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/observability-early-warning-contract.v1.json#/properties/signal_classes/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "minItems": 3,
       "uniqueItems": true
@@ -66,7 +68,8 @@
             "queue_depth",
             "worker_latency",
             "resource_utilization"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/observability-early-warning-contract.v1.json#/$defs/signal_policy/properties/signal_class/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "warn_threshold": {
           "type": "number",
@@ -84,7 +87,8 @@
             "rebalance_queue",
             "notify_operator",
             "shift_to_cost_optimized_path"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/observability-early-warning-contract.v1.json#/$defs/signal_policy/properties/action_on_warn/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "action_on_critical": {
           "type": "string",
@@ -93,7 +97,8 @@
             "trigger_reliability_recovery",
             "enforce_cost_cap",
             "escalate_oncall"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/observability-early-warning-contract.v1.json#/$defs/signal_policy/properties/action_on_critical/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         }
       },
       "additionalProperties": false
@@ -111,7 +116,8 @@
             "dispatch",
             "reliability",
             "cost"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/observability-early-warning-contract.v1.json#/$defs/chain_policy/properties/chain_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "signals": {
           "type": "array",

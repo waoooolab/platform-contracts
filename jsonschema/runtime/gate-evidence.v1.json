@@ -30,7 +30,8 @@
         "objective_archive",
         "policy_flip",
         "release_finalize"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/gate-evidence.v1.json#/properties/gate_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "gate_status": {
       "type": "string",
@@ -38,7 +39,8 @@
         "passed",
         "blocked",
         "bypassed"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/gate-evidence.v1.json#/properties/gate_status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "confirmed_at": {
       "type": "string",
@@ -52,7 +54,8 @@
         "runtime.gateway",
         "control.gateway",
         "manual.override"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/gate-evidence.v1.json#/properties/source/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "task_id": {
       "type": "string",
@@ -134,7 +137,8 @@
           "enum": [
             "worktree",
             "clone"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/gate-evidence.v1.json#/properties/context/properties/worktree_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "board_path": {
           "type": "string",

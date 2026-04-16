@@ -49,7 +49,8 @@
         "private",
         "internal",
         "public"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/visibility/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "source": {
       "type": "object",
@@ -77,7 +78,8 @@
           "enum": [
             "node",
             "simple"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/source/properties/mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "entry_nodes": {
           "type": "array",
@@ -124,7 +126,8 @@
               "enum": [
                 "tools",
                 "canvas"
-              ]
+              ],
+              "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/interface/properties/ui/properties/default_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
             },
             "switchable_modes": {
               "type": "array",
@@ -134,7 +137,8 @@
                 "enum": [
                   "tools",
                   "canvas"
-                ]
+                ],
+                "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/interface/properties/ui/properties/switchable_modes/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
               },
               "uniqueItems": true
             }
@@ -201,7 +205,8 @@
           "enum": [
             "control",
             "compute"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/execution/properties/requested_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "route_policy": {
           "type": "string",
@@ -209,7 +214,8 @@
             "default",
             "latency_optimized",
             "cost_optimized"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/execution/properties/route_policy/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "timeout_ms": {
           "type": "integer",
@@ -256,7 +262,8 @@
             "approved",
             "rejected",
             "deprecated"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/governance/properties/review_status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "trust_level": {
           "type": "string",
@@ -264,7 +271,8 @@
             "official",
             "internal",
             "user"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/governance/properties/trust_level/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "policy_profile": {
           "type": "string",
@@ -283,7 +291,8 @@
             "private",
             "internal",
             "marketplace"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability.v1.json#/properties/distribution/properties/channel/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "regions": {
           "type": "array",

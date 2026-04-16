@@ -60,13 +60,15 @@
               "approval",
               "notify",
               "script"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/execution-plan-contract.v1.json#/properties/nodes/items/properties/operation_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "status": {
             "type": "string",
             "enum": [
               "pending"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/execution-plan-contract.v1.json#/properties/nodes/items/properties/status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "depends_on_node_ids": {
             "type": "array",
@@ -128,7 +130,8 @@
           "enum": [
             "provided",
             "generated_default"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/execution-plan-contract.v1.json#/properties/metadata/properties/template_source/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "template_id": {
           "type": "string",
@@ -201,7 +204,8 @@
             "type": "string",
             "enum": [
               "pending"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/execution-plan-contract.v1.json#/properties/steps/items/properties/status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           }
         },
         "additionalProperties": false

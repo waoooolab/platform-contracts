@@ -16,7 +16,8 @@
         "waiting",
         "idle",
         "error"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/session-status.v1.json#/properties/session_status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     }
   },
   "additionalProperties": false

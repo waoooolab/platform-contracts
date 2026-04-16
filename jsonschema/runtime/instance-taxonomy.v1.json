@@ -29,7 +29,8 @@
           "run",
           "session",
           "agent"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/instance-taxonomy.v1.json#/properties/instances/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       }
     },
     "workspaces": {
@@ -43,7 +44,8 @@
           "agent_workspace",
           "lane_workspace",
           "tenant_workspace"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/instance-taxonomy.v1.json#/properties/workspaces/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       }
     },
     "mapping_rules": {
@@ -57,7 +59,8 @@
           "integrate_via_mainline_workspace",
           "runtime_governance_tracked_by_runtime_instance",
           "product_tenancy_tracked_by_tenant_workspace"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/instance-taxonomy.v1.json#/properties/mapping_rules/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       }
     }
   }

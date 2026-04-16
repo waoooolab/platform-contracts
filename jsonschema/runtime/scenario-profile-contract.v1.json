@@ -25,7 +25,8 @@
         "dev_factory",
         "visual_factory",
         "project_ops"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/scenario-profile-contract.v1.json#/properties/profile_id/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "objective_type": {
       "type": "string",
@@ -33,7 +34,8 @@
         "development",
         "visual_generation",
         "project_operations"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/scenario-profile-contract.v1.json#/properties/objective_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "artifact_type": {
       "type": "string",
@@ -41,7 +43,8 @@
         "code_bundle",
         "media_bundle",
         "ops_bundle"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/scenario-profile-contract.v1.json#/properties/artifact_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "completion_criteria": {
       "type": "array",
@@ -53,7 +56,8 @@
           "policy_gate_passed",
           "review_completed",
           "handoff_ready"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/scenario-profile-contract.v1.json#/properties/completion_criteria/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 2
@@ -64,7 +68,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/scenario-profile-contract.v1.json#/properties/risk_level/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "orchestration_depth": {
       "type": "string",
@@ -72,7 +77,8 @@
         "single_agent",
         "orchestrated_multi_agent",
         "nested_multi_agent"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/scenario-profile-contract.v1.json#/properties/orchestration_depth/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "required_policy_bindings": {
       "type": "array",
@@ -83,7 +89,8 @@
           "admission_policy",
           "resource_policy",
           "audit_policy"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/scenario-profile-contract.v1.json#/properties/required_policy_bindings/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 2

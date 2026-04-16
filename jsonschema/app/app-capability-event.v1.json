@@ -27,7 +27,8 @@
         "app.capability.published.v1",
         "app.capability.invoked.v1",
         "app.capability.invoke_failed.v1"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/app/app-capability-event.v1.json#/properties/event_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "tenant_id": {
       "type": "string",
@@ -76,7 +77,8 @@
             "published",
             "invoked",
             "failed"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability-event.v1.json#/properties/payload/properties/status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "kind": {
           "type": "string",
@@ -85,7 +87,8 @@
             "tool",
             "workflow",
             "app"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability-event.v1.json#/properties/payload/properties/kind/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "workflow_source": {
           "type": "object",
@@ -113,7 +116,8 @@
               "enum": [
                 "node",
                 "simple"
-              ]
+              ],
+              "$comment": "SSOT source pointer: jsonschema/app/app-capability-event.v1.json#/properties/payload/properties/workflow_source/properties/mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
             },
             "entry_nodes": {
               "type": "array",
@@ -143,7 +147,8 @@
             "private",
             "internal",
             "public"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/app/app-capability-event.v1.json#/properties/payload/properties/visibility/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "run_id": {
           "type": "string",

@@ -32,7 +32,8 @@
               "external",
               "top-level",
               "extension"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/tool-taxonomy-contract.v1.json#/properties/rules/items/properties/kind/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "owner_layer": {
             "type": "string",
@@ -41,7 +42,8 @@
               "bridge_adapter",
               "control_surface",
               "capability_extension"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/tool-taxonomy-contract.v1.json#/properties/rules/items/properties/owner_layer/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "scheduler_authority_allowed": {
             "type": "boolean"
@@ -70,7 +72,8 @@
           "hooks",
           "plugins",
           "agents"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/tool-taxonomy-contract.v1.json#/properties/tool_capability_kinds/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       }
     }
   },

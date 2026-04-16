@@ -32,7 +32,8 @@
           "instance",
           "workspace",
           "global"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/plugin-runtime-contract.v1.json#/properties/discovery_precedence/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       }
     },
     "trust_policy_modes": {
@@ -45,7 +46,8 @@
           "allow_list",
           "deny_list",
           "signed_only"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/plugin-runtime-contract.v1.json#/properties/trust_policy_modes/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       }
     },
     "restart_semantics": {
@@ -58,7 +60,8 @@
           "manual",
           "on_boot",
           "on_failure_backoff"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/plugin-runtime-contract.v1.json#/properties/restart_semantics/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       }
     },
     "authority_boundary": {

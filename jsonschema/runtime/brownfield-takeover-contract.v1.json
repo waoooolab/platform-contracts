@@ -86,7 +86,8 @@
                   "P0",
                   "P1",
                   "P2"
-                ]
+                ],
+                "$comment": "SSOT source pointer: jsonschema/runtime/brownfield-takeover-contract.v1.json#/properties/drift_detection/properties/remediation_backlog/items/properties/priority/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
               },
               "owner": {
                 "type": "string",
@@ -129,7 +130,8 @@
             "registered",
             "unregistered",
             "partially_registered"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/brownfield-takeover-contract.v1.json#/properties/attach_import/properties/source_registration_state/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "identity_mapping": {
           "type": "object",
@@ -168,7 +170,8 @@
               "bind_scope_identity",
               "resume_orchestrated_control",
               "emit_takeover_audit"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/brownfield-takeover-contract.v1.json#/properties/attach_import/properties/import_lifecycle_action/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "uniqueItems": true
         }

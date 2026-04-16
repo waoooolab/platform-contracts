@@ -28,7 +28,8 @@
       "enum": [
         "assistant_direct",
         "runtime_governed"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/execution_path/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "decision_reason_code": {
       "type": "string",
@@ -58,7 +59,8 @@
         "workflow",
         "tools",
         "mixed"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/entry_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "task_plane": {
       "type": "string",
@@ -66,7 +68,8 @@
         "agent_work",
         "workflow_work",
         "runtime_workload"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/task_plane/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "governance_signals": {
       "type": "object",
@@ -102,7 +105,8 @@
             "coding_assistant",
             "visual_generation",
             "operations"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/scenario_profile/properties/scenario_id/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "decision_basis": {
           "type": "string",
@@ -110,7 +114,8 @@
             "user_entry",
             "task_plane",
             "workload_signal"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/scenario_profile/properties/decision_basis/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         }
       },
       "additionalProperties": false
@@ -129,7 +134,8 @@
             "workflow_pipeline",
             "tool_realtime",
             "mixed_supervision"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/chain_profile/properties/chain_id/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "planning_mode": {
           "type": "string",
@@ -138,7 +144,8 @@
             "compiled",
             "direct",
             "hybrid"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/chain_profile/properties/planning_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         }
       },
       "additionalProperties": false
@@ -157,7 +164,8 @@
             "delegate_team",
             "tool_first",
             "hybrid"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/agent_dispatch_policy/properties/dispatch_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "target_executor": {
           "type": "string",
@@ -165,7 +173,8 @@
             "agent_orchestrator",
             "runtime_execution",
             "mixed"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/agent_dispatch_policy/properties/target_executor/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "preferred_providers": {
           "type": "array",
@@ -197,7 +206,8 @@
           "enum": [
             "none",
             "required"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/task_governance_policy/properties/approval_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         }
       },
       "additionalProperties": false
@@ -220,7 +230,8 @@
             "not_requested",
             "resolved",
             "invalid"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/harness_policy/properties/resolution_status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "required_components": {
           "type": "object",
@@ -323,7 +334,8 @@
             "agent_orchestrator",
             "agent_framework",
             "external_orchestrator"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/layered_authority_contract/properties/upstream_decision_plane/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "upstream_decision_role": {
           "type": "string",
@@ -383,7 +395,8 @@
               "reliability_guard",
               "policy_gate",
               "audit_gate"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/path_promotion_decision_matrix/properties/deterministic_rule_order/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           }
         },
         "trigger_snapshot": {
@@ -405,7 +418,8 @@
                 "medium",
                 "high",
                 "critical"
-              ]
+              ],
+              "$comment": "SSOT source pointer: jsonschema/runtime/assistant-decision.v1.json#/properties/path_promotion_decision_matrix/properties/trigger_snapshot/properties/reliability_risk_level/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
             },
             "policy_gate_required": {
               "type": "boolean"

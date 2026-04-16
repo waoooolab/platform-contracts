@@ -110,7 +110,8 @@
         "scale_up_recommended",
         "scale_down_idle",
         null
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/runtime-worker-pool-tick.v1.json#/properties/autoscale_reason/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "scheduler_signal": {
       "type": "object",
@@ -302,7 +303,8 @@
         "queue",
         "defer",
         "reject"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/runtime-worker-pool-tick.v1.json#/properties/control_outcome/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "control_signal": {
       "type": "object",
@@ -352,7 +354,8 @@
       "enum": [
         "idle",
         "progressed"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/runtime-worker-pool-tick.v1.json#/properties/pool_outcome/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "last_tick_at": {
       "type": "string",
@@ -363,7 +366,8 @@
       "enum": [
         "running",
         "stopped"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/runtime-worker-pool-tick.v1.json#/properties/lifecycle_state/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "is_running": {
       "type": "boolean"
@@ -412,7 +416,8 @@
             "queue",
             "defer",
             "reject"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/runtime-worker-pool-tick.v1.json#/properties/scheduling_signal/properties/control_outcome/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "control_signal": {
           "type": "object",

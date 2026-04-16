@@ -24,14 +24,16 @@
           "enum": [
             "hosted_api",
             "local_endpoint"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/tenant-config-contract.v1.json#/properties/chain_policy/properties/default_inference_target/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "enforced_inference_target": {
           "type": "string",
           "enum": [
             "hosted_api",
             "local_endpoint"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/tenant-config-contract.v1.json#/properties/chain_policy/properties/enforced_inference_target/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "preferred_models": {
           "type": "object",

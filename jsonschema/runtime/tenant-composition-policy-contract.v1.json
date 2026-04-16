@@ -25,7 +25,8 @@
         "single_tenant",
         "multi_tenant",
         "local_profile"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/tenant-composition-policy-contract.v1.json#/properties/tenant_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "chain_id": {
       "type": "string",
@@ -34,7 +35,8 @@
         "single_to_multi_guarded",
         "multi_to_multi",
         "local_profile_local_unlimited"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/tenant-composition-policy-contract.v1.json#/properties/chain_id/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "composition_policy": {
       "type": "string",
@@ -43,7 +45,8 @@
         "deny_by_default_allow_only_with_control_plane_policy_gate",
         "allow_with_per_tenant_isolation_and_quota",
         "allow_local_debug_path_with_explicit_local_profile"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/tenant-composition-policy-contract.v1.json#/properties/composition_policy/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "mixed_entry_mode_allowed": {
       "type": "boolean"
@@ -61,7 +64,8 @@
           "tenant_parallel_limit",
           "explicit_local_profile_signal",
           "local_unlimited_quota_profile"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/tenant-composition-policy-contract.v1.json#/properties/required_controls/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "minItems": 1,
       "uniqueItems": true
@@ -71,7 +75,8 @@
       "enum": [
         "deny_with_audit",
         "deny_and_emit_audit"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/tenant-composition-policy-contract.v1.json#/properties/on_policy_violation/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "reason_code": {
       "type": "string",
@@ -80,7 +85,8 @@
         "cross_tenant_scope_override",
         "quota_exhausted",
         "tenant_parallel_limit_exceeded"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/tenant-composition-policy-contract.v1.json#/properties/reason_code/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "action": {
       "type": "string",
@@ -88,7 +94,8 @@
         "deny_request",
         "throttle_with_retry_after",
         "reject_run_submission"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/tenant-composition-policy-contract.v1.json#/properties/action/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "safe_fallback_tenant_mode": {
       "type": "string",

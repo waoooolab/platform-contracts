@@ -36,7 +36,8 @@
             "success",
             "failure",
             "timeout"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/capability-invoke-contract.v1.json#/properties/invoke_result/properties/status/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "output": {},
         "error_code": {

@@ -22,7 +22,8 @@
         "tool_exec",
         "delivery",
         "scheduler"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/runtime-queue-fabric.v1.json#/properties/queue_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "message": {
       "type": "object",

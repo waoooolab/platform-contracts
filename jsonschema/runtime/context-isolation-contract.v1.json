@@ -25,7 +25,8 @@
         "visual_generation",
         "operations",
         "hybrid_product"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/scenario_id/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "orchestration_mode": {
       "type": "string",
@@ -34,7 +35,8 @@
         "orchestrated_multi_agent",
         "nested_worker_subagents",
         "tool_first"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/orchestration_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "context_mode": {
       "type": "string",
@@ -42,7 +44,8 @@
         "isolated",
         "shared",
         "hybrid_scoped"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/context_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "communication_memory_plane": {
       "type": "object",
@@ -57,7 +60,8 @@
           "enum": [
             "runtime_orchestrator",
             "provider_native"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/communication_memory_plane/properties/authority/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "storage_scope": {
           "type": "string",
@@ -66,14 +70,16 @@
             "user",
             "agent",
             "organization"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/communication_memory_plane/properties/storage_scope/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "retention_class": {
           "type": "string",
           "enum": [
             "ephemeral",
             "durable"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/communication_memory_plane/properties/retention_class/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         }
       },
       "additionalProperties": false
@@ -101,7 +107,8 @@
               "session_key",
               "scope_id",
               "scope_type"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/runtime_state_plane/properties/required_fields/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "uniqueItems": true
         }
@@ -119,7 +126,8 @@
           "memory_injection_policy_explicit",
           "communication_runtime_planes_separated",
           "cross_scope_leakage_blocked"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/context-isolation-contract.v1.json#/properties/acceptance_criteria/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true
     }

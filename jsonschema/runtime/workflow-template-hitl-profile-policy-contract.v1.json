@@ -23,7 +23,8 @@
         "development_pipeline",
         "visual_pipeline",
         "project_ops_pipeline"
-      ]
+      ],
+      "$comment": "SSOT source pointer: jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json#/properties/template_type/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
     },
     "hitl": {
       "type": "object",
@@ -40,7 +41,8 @@
             "approval_required",
             "review_required",
             "notify_only"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json#/properties/hitl/properties/gate_mode/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "gate_scope": {
           "type": "string",
@@ -48,7 +50,8 @@
             "workflow",
             "phase",
             "step"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json#/properties/hitl/properties/gate_scope/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "notify_points": {
           "type": "array",
@@ -59,7 +62,8 @@
               "gate_pending",
               "approval_recorded",
               "run_resumed"
-            ]
+            ],
+            "$comment": "SSOT source pointer: jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json#/properties/hitl/properties/notify_points/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
           },
           "uniqueItems": true,
           "minItems": 1
@@ -79,7 +83,8 @@
             "dev_factory",
             "visual_factory",
             "project_ops"
-          ]
+          ],
+          "$comment": "SSOT source pointer: jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json#/properties/profile_projection/properties/scenario_profile/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
         },
         "execution_profile": {
           "type": "object"
@@ -118,7 +123,8 @@
           "projection_precedence_deterministic",
           "scenario_profile_fallback_declared",
           "explicit_payload_override_safe"
-        ]
+        ],
+        "$comment": "SSOT source pointer: jsonschema/runtime/workflow-template-hitl-profile-policy-contract.v1.json#/properties/acceptance_criteria/items/enum. Mirror owners must align with openwaoooo/packages/contracts and openwaoooo/packages/contracts-py when applicable."
       },
       "uniqueItems": true,
       "minItems": 3
