@@ -11,7 +11,7 @@
     "execution_mode": {
       "type": "string",
       "enum": ["sync", "async", "stream"],
-      "$comment": "Semantic domain=tool_invocation_mode. Distinct from runtime_dispatch_mode(control|compute) and agent_orchestration_mode(direct|governed)."
+      "$comment": "SSOT source pointer: openwaoooo/packages/contracts/src/public-invariants.ts#TOOL_INVOCATION_MODE_VALUES. Semantic domain=tool_invocation_mode, distinct from runtime_dispatch_mode(control|compute) and agent_orchestration_mode(direct|governed)."
     },
     "timeout_ms": {"type": "integer", "minimum": 1},
     "idempotency_required": {"type": "boolean"},
