@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/capability-invoke-contract.v1.json",
+  "title": "CapabilityInvokeContractV1",
+  "description": "Canonical invoke-result status and retry/timeout policy contract for capability invocation surfaces.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "contract_surface",
+    "invoke_result",
+    "retry_policy",
+    "timeout_policy"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "capability_invoke_contract.v1"
+    },
+    "contract_surface": {
+      "type": "string",
+      "const": "/v1/capabilities/{capability_id}:invoke"
+    },
+    "invoke_result": {
+      "type": "object",
+      "required": [
+        "status",
+        "output",
+        "error_code",
+        "attempt_count",
+        "elapsed_ms"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "success",
+            "failure",
+            "timeout"
+          ]
+        },
+        "output": {},
+        "error_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attempt_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "elapsed_ms": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "retry_policy": {
+      "type": "object",
+      "required": [
+        "max_retries_default",
+        "max_retries_min",
+        "max_retries_max"
+      ],
+      "properties": {
+        "max_retries_default": {
+          "type": "integer",
+          "const": 3
+        },
+        "max_retries_min": {
+          "type": "integer",
+          "const": 1
+        },
+        "max_retries_max": {
+          "type": "integer",
+          "const": 20
+        }
+      },
+      "additionalProperties": false
+    },
+    "timeout_policy": {
+      "type": "object",
+      "required": [
+        "timeout_seconds_default",
+        "timeout_seconds_min_exclusive",
+        "timeout_seconds_max"
+      ],
+      "properties": {
+        "timeout_seconds_default": {
+          "type": "number",
+          "const": 30
+        },
+        "timeout_seconds_min_exclusive": {
+          "type": "number",
+          "const": 0
+        },
+        "timeout_seconds_max": {
+          "type": "number",
+          "const": 3600
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/plugin-runtime-contract.v1.json",
+  "title": "PluginRuntimeContractV1",
+  "description": "Plugin runtime discovery/trust/restart semantics contract.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "manifest_schema_version",
+    "discovery_precedence",
+    "trust_policy_modes",
+    "restart_semantics",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "plugin_runtime_contract.v1"
+    },
+    "manifest_schema_version": {
+      "type": "string",
+      "const": "plugin_manifest.v1"
+    },
+    "discovery_precedence": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "env_override",
+          "instance",
+          "workspace",
+          "global"
+        ]
+      }
+    },
+    "trust_policy_modes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "allow_list",
+          "deny_list",
+          "signed_only"
+        ]
+      }
+    },
+    "restart_semantics": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "manual",
+          "on_boot",
+          "on_failure_backoff"
+        ]
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "required": [
+        "scheduler_authority",
+        "tool_runtime_authority",
+        "skills_distribution_authority"
+      ],
+      "properties": {
+        "scheduler_authority": {
+          "type": "string",
+          "const": "none"
+        },
+        "tool_runtime_authority": {
+          "type": "string",
+          "const": "none"
+        },
+        "skills_distribution_authority": {
+          "type": "string",
+          "const": "none"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

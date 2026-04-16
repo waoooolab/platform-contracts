@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/runtime-queue-fabric.v1.json",
+  "title": "RuntimeQueueFabricV1",
+  "description": "Queue-fabric queue type and message envelope domains for runtime execution scheduler.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "queue_type",
+    "message"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "runtime_queue_fabric.v1"
+    },
+    "queue_type": {
+      "type": "string",
+      "enum": [
+        "interaction",
+        "orchestration",
+        "tool_exec",
+        "delivery",
+        "scheduler"
+      ]
+    },
+    "message": {
+      "type": "object",
+      "required": [
+        "run_id",
+        "payload"
+      ],
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payload": {
+          "type": "object"
+        },
+        "trace_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tenant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tenant_tier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority_class": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority_score": {
+          "type": "integer"
+        },
+        "deadline_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retry_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "backoff_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

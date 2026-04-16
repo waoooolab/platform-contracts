@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/session-status.v1.json",
+  "title": "SessionStatusV1",
+  "description": "Shared team/session status enum for cross-service parity checks.",
+  "type": "object",
+  "required": [
+    "session_status"
+  ],
+  "properties": {
+    "session_status": {
+      "type": "string",
+      "enum": [
+        "starting",
+        "running",
+        "waiting",
+        "idle",
+        "error"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

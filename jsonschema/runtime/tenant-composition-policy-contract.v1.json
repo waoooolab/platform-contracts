@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/tenant-composition-policy-contract.v1.json",
+  "title": "TenantCompositionPolicyContractV1",
+  "description": "Canonical tenant composition mode and chain policy contract.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "tenant_mode",
+    "chain_id",
+    "composition_policy",
+    "mixed_entry_mode_allowed",
+    "required_controls",
+    "on_policy_violation",
+    "safe_fallback_tenant_mode"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "tenant_composition_policy_contract.v1"
+    },
+    "tenant_mode": {
+      "type": "string",
+      "enum": [
+        "single_tenant",
+        "multi_tenant",
+        "local_profile"
+      ]
+    },
+    "chain_id": {
+      "type": "string",
+      "enum": [
+        "single_to_single",
+        "single_to_multi_guarded",
+        "multi_to_multi",
+        "local_profile_local_unlimited"
+      ]
+    },
+    "composition_policy": {
+      "type": "string",
+      "enum": [
+        "allow_when_identity_and_scope_are_consistent",
+        "deny_by_default_allow_only_with_control_plane_policy_gate",
+        "allow_with_per_tenant_isolation_and_quota",
+        "allow_local_debug_path_with_explicit_local_profile"
+      ]
+    },
+    "mixed_entry_mode_allowed": {
+      "type": "boolean"
+    },
+    "required_controls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "token_claim_binding",
+          "scope_axis_projection",
+          "trace_lineage_continuity",
+          "control_plane_policy_gate",
+          "quota_profile_enforced",
+          "tenant_parallel_limit",
+          "explicit_local_profile_signal",
+          "local_unlimited_quota_profile"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "on_policy_violation": {
+      "type": "string",
+      "enum": [
+        "deny_with_audit",
+        "deny_and_emit_audit"
+      ]
+    },
+    "reason_code": {
+      "type": "string",
+      "enum": [
+        "tenant_mode_policy_mismatch",
+        "cross_tenant_scope_override",
+        "quota_exhausted",
+        "tenant_parallel_limit_exceeded"
+      ]
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "deny_request",
+        "throttle_with_retry_after",
+        "reject_run_submission"
+      ]
+    },
+    "safe_fallback_tenant_mode": {
+      "type": "string",
+      "const": "single_tenant"
+    }
+  },
+  "additionalProperties": false
+}

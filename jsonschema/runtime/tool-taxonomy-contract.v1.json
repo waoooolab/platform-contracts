@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waoooolab.dev/contracts/runtime/tool-taxonomy-contract.v1.json",
+  "title": "ToolTaxonomyContractV1",
+  "description": "Tool taxonomy and authority-boundary rules for runtime and adapter surfaces.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "tool_taxonomy.v1"
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "owner_layer",
+          "scheduler_authority_allowed",
+          "forbidden_authorities"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "built-in",
+              "external",
+              "top-level",
+              "extension"
+            ]
+          },
+          "owner_layer": {
+            "type": "string",
+            "enum": [
+              "platform_runtime",
+              "bridge_adapter",
+              "control_surface",
+              "capability_extension"
+            ]
+          },
+          "scheduler_authority_allowed": {
+            "type": "boolean"
+          },
+          "forbidden_authorities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "tool_capability_kinds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "skills",
+          "mcp",
+          "commands",
+          "hooks",
+          "plugins",
+          "agents"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}
