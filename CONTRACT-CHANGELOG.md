@@ -5,6 +5,10 @@ Policy reference:
 
 ## Unreleased
 
+- [changed] jsonschema/tool-contract.v1.json - backward-compatible: update
+  `execution_mode` enum `$comment` with canonical SSOT source pointer
+  (`openwaoooo/packages/contracts/src/public-invariants.ts#TOOL_INVOCATION_MODE_VALUES`)
+  while preserving existing enum values and contract behavior (migration: n/a)
 - [changed] catalog/runtime/adapter-seams.data.v1.json - backward-compatible:
   mark Stage-C adapter seam convergence for five runtime/control seams and
   record stage_a + stage_b alignment states
