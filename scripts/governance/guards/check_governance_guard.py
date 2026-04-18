@@ -41,6 +41,38 @@ BOARD_SHARD_RES: dict[str, re.Pattern[str]] = {
 
 ALLOWED_STATES = {"draft", "active", "superseded", "archived"}
 REPORT_TYPES = ("execution", "readiness", "review", "audit", "issues", "postmortem")
+DUAL_AXIS_NAMING_RULES: tuple[tuple[Path, str, re.Pattern[str]], ...] = (
+    (
+        ROOT / "docs/execution/boards",
+        "TASK-BOARD-",
+        re.compile(r"^TASK-BOARD-\d{4}-\d{2}-\d{2}-[A-Z]\.md$"),
+    ),
+    (
+        ROOT / "docs/execution/boards",
+        "GAP-BOARD-",
+        re.compile(r"^GAP-BOARD-\d{4}-\d{2}-\d{2}-[A-Z]\.md$"),
+    ),
+    (
+        ROOT / "docs/execution/boards",
+        "MULTI-AGENT-BOARD-",
+        re.compile(r"^MULTI-AGENT-BOARD-\d{4}-\d{2}-\d{2}-[A-Z]\.md$"),
+    ),
+    (
+        ROOT / "docs/execution/boards/governance",
+        "DOCS-GOVERNANCE-REMEDIATION-BOARD-",
+        re.compile(r"^DOCS-GOVERNANCE-REMEDIATION-BOARD-\d{4}-\d{2}-\d{2}-[A-Z]\.md$"),
+    ),
+    (
+        ROOT / "docs/execution/logs",
+        "WORKING-EXECUTION-LOG-",
+        re.compile(r"^WORKING-EXECUTION-LOG-\d{4}-\d{2}-\d{2}-[A-Z]\.md$"),
+    ),
+    (
+        ROOT / "docs/execution/reports/issues",
+        "ISSUES-REPORT-",
+        re.compile(r"^ISSUES-REPORT-\d{4}-\d{2}-\d{2}-[A-Z]\.md$"),
+    ),
+)
 
 
 def _load_yaml(path: Path) -> dict:
@@ -872,6 +904,27 @@ def _check_authority_slot_binding() -> list[str]:
     return findings
 
 
+def _check_report_file_naming() -> list[str]:
+    findings: list[str] = []
+    seen_paths: set[Path] = set()
+    for base, prefix, pattern in DUAL_AXIS_NAMING_RULES:
+        if not base.exists():
+            continue
+        for path in _md_files(base):
+            if path in seen_paths:
+                continue
+            name = path.name
+            if not name.startswith(prefix):
+                continue
+            seen_paths.add(path)
+            if not pattern.fullmatch(name):
+                findings.append(
+                    f"{path.relative_to(ROOT)} violates dual-axis shard naming "
+                    f"(expected date + part suffix like YYYY-MM-DD-<PART>)"
+                )
+    return findings
+
+
 CHECKS: dict[str, Callable[[], list[str]]] = {
     "guard.registry.sync": _check_registry_sync,
     "guard.docs.one-active-authority-per-domain": _check_one_active_authority_per_domain,
@@ -880,6 +933,7 @@ CHECKS: dict[str, Callable[[], list[str]]] = {
     "guard.docs.supersede-link": _check_supersede_link,
     "guard.docs.report-set-completeness": _check_report_set_completeness,
     "guard.contract.source-trace": _check_contract_source_trace,
+    "guard.docs.report-file-naming": _check_report_file_naming,
     "guard.docs.log-entry-timestamp": _check_log_entry_timestamp,
     "guard.docs.report-required-fields": _check_report_required_fields,
     "guard.docs.authority-reference-only": _check_authority_reference_only,
