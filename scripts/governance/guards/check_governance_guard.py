@@ -145,6 +145,22 @@ def _resolve_governance_remediation_board_path() -> Path:
     return candidates[0]
 
 
+def _check_registry_sync() -> list[str]:
+    findings: list[str] = []
+    try:
+        docs = _collect_doc_index()
+    except RuntimeError as e:
+        return [str(e)]
+    for item in docs:
+        path = str(item.get("path", "")).strip()
+        if not path:
+            findings.append(f"{item.get('artifact_id', '<unknown>')}: missing path field")
+            continue
+        if not (ROOT / path).exists():
+            findings.append(f"registered doc not found on disk: {path}")
+    return findings
+
+
 def _check_one_active_authority_per_domain() -> list[str]:
     findings: list[str] = []
     by_semantic_domain: dict[str, list[str]] = {}
@@ -857,6 +873,7 @@ def _check_authority_slot_binding() -> list[str]:
 
 
 CHECKS: dict[str, Callable[[], list[str]]] = {
+    "guard.registry.sync": _check_registry_sync,
     "guard.docs.one-active-authority-per-domain": _check_one_active_authority_per_domain,
     "guard.docs.lifecycle-transition": _check_lifecycle_transition,
     "guard.docs.execution-to-archive-expiry": _check_execution_to_archive_expiry,

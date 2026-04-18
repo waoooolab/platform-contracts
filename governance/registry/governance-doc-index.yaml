@@ -1,0 +1,17 @@
+schema_version: governance_doc_index.v1
+
+documents:
+  - artifact_id: platform-contracts.contract-changelog-policy
+    type: authority
+    state: active
+    owner: platform-contracts-governance
+    path: CONTRACT-CHANGELOG-POLICY.md
+    domain: platform_contracts
+    maintenance_mode: manual
+    artifact_version: contract_changelog_policy.v1/r1
+    change_type: replace
+    standard_id: standard.platform-contracts.changelog-policy
+    baseline_id: baseline.platform-contracts.contract-lifecycle
+    guard_ids: []
+    gate_id: gate.platform-contracts.changelog-policy-activation
+    ci_job: platform-contracts-changelog-policy-activation

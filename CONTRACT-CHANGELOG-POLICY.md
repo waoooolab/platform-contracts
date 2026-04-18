@@ -1,5 +1,7 @@
 # Contract Changelog Policy
 
+Status: active
+
 This policy defines how contract changes must be recorded in this repository.
 
 ## Rules
